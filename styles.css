@@ -259,7 +259,7 @@ h1, h2, h3, .display { font-family: var(--display); font-weight: 700; letter-spa
   @keyframes pulse { 50% { transform: scale(1.8); opacity: .4; } }
   .is-in .spin { animation: spin 1600ms var(--ease-out) 300ms both; transform-origin: 100px 100px; }
   @keyframes spin { from { transform: rotate(-200deg); } }
-  .is-in .tilt { animation: tilt 1800ms var(--ease-out) 300ms both; transform-origin: 122px 60px; }
+  .is-in .tilt { animation: tilt 1800ms var(--ease-out) 300ms both; transform-origin: 101px 55px; }
   @keyframes tilt { 0% { transform: rotate(-9deg); } 55% { transform: rotate(4deg); } 100% { transform: none; } }
 }
 

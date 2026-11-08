@@ -97,15 +97,21 @@
       <li class="stage s4 reveal">
         <div class="tile">
           <svg viewBox="0 0 240 200" role="img" aria-label="Phone balanced in the OM 7P clamp, moved towards the camera bar">
-            <rect x="108" y="128" width="30" height="80" rx="8" fill="var(--fg)"/>
-            <rect x="116" y="64" width="12" height="70" fill="var(--fg)"/>
-            <rect x="60" y="56" width="68" height="12" fill="var(--fg)"/>
+            <rect x="93" y="100" width="14" height="34" fill="var(--fg)"/>
+            <rect x="85" y="128" width="30" height="72" rx="8" fill="var(--fg)"/>
             <g class="tilt">
-              <rect x="20" y="10" width="200" height="64" rx="12" fill="var(--fg)"/>
-              <rect x="176" y="10" width="26" height="64" fill="var(--fg2)"/>
-              <circle cx="189" cy="30" r="9" fill="var(--fg)"/><circle cx="189" cy="54" r="9" fill="var(--fg)"/>
-              <rect x="74" y="4" width="34" height="76" rx="4" fill="var(--fg2)"/>
-              <rect x="20" y="62" width="40" height="12" fill="var(--fg2)"/>
+              <!-- Pixel 10 Pro XL, 162.8 x 76.6 mm, in landscape -->
+              <rect x="28" y="12" width="184" height="86" rx="14" fill="var(--fg)"/>
+              <!-- camera visor runs across the phone, so it shows as a band near the top end -->
+              <rect x="170" y="12" width="28" height="86" fill="var(--fg2)"/>
+              <circle cx="184" cy="28" r="8" fill="var(--fg)"/>
+              <circle cx="184" cy="48" r="8" fill="var(--fg)"/>
+              <circle cx="184" cy="68" r="8" fill="var(--fg)"/>
+              <circle cx="184" cy="86" r="3" fill="var(--fg)"/>
+              <!-- OM 7P clamp, nudged towards the camera bar -->
+              <rect x="84" y="4" width="34" height="102" rx="4" fill="var(--fg2)"/>
+              <!-- Multifunctional Module on the bottom edge -->
+              <rect x="20" y="32" width="10" height="46" rx="3" fill="var(--fg2)"/>
             </g>
           </svg>
         </div>
@@ -128,7 +134,7 @@
       <h2 id="h-dial" class="dial-head">Read the light</h2>
       <div class="lights" role="group" aria-label="Lighting condition">
         <button type="button" class="light" data-light="golden">Golden hour or shade</button>
-        <button type="button" class="light" data-light="cloudy" aria-pressed="true">Cloudy UK day</button>
+        <button type="button" class="light" data-light="cloudy" aria-pressed="true">Overcast day</button>
         <button type="button" class="light" data-light="hazy">Hazy sun</button>
         <button type="button" class="light" data-light="midday">Midday sun</button>
         <button type="button" class="light" data-light="trails">Tripod trails</button>
@@ -173,13 +179,13 @@
       <div class="cat-head reveal"><h3>Shutter at 180°</h3><span>Shutter = 2 × frame rate</span></div>
       <ul class="menu" role="list">
         <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>24 fps</strong><span>1/48 or 1/50s</span></p><p>Narrative, the cinematic standard.</p></div></li>
-        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>25 fps</strong><span>1/50s</span></p><p>UK and PAL standard. Stops 50&thinsp;Hz flicker from indoor lights.</p></div></li>
-        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>30 fps</strong><span>1/60s</span></p><p>Smooth walk-and-talks and social video.</p></div></li>
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>25 fps</strong><span>1/50s</span></p><p>Use it where mains power is 50&thinsp;Hz, to stop flicker from indoor lights.</p></div></li>
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>30 fps</strong><span>1/60s</span></p><p>Smooth walk-and-talks and social video. Use it where mains power is 60&thinsp;Hz, to stop flicker from indoor lights.</p></div></li>
         <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>60 fps</strong><span>1/120s</span></p><p>Slow-motion b-roll. Conform to 24, 25 or 30p in Resolve.</p></div></li>
       </ul>
       <div class="cat-side reveal">
-        <figure class="loop"><div class="loop-disc"><video src="assets/tresaith-waterfall.webm" poster="assets/tresaith-waterfall-poster.jpg" muted loop playsinline autoplay preload="auto" width="854" height="480" aria-label="Tresaith waterfall in Wales, looping"></video></div>
-        <figcaption>Tresaith, Wales. Shoot water like this at 60p and 1/120s, then conform it for slow motion.</figcaption></figure>
+        <figure class="loop"><div class="loop-disc"><video src="assets/tresaith-waterfall.webm" poster="assets/tresaith-waterfall-poster.jpg" muted loop playsinline autoplay preload="auto" width="854" height="480" aria-label="A waterfall on a rocky coast, looping"></video></div>
+        <figcaption>Shoot water like this at 60p and 1/120s, then conform it for slow motion.</figcaption></figure>
         <p class="cat-foot">Keep ISO between 50 and 400 for clean shadows.</p>
       </div>
     </div>
@@ -187,7 +193,7 @@
       <div class="cat-head reveal"><h3>Filters in the bag</h3><span>K&amp;F 67mm</span></div>
       <ul class="menu" role="list">
         <li class="item reveal"><span class="bullet"><img src="assets/golden.jpg" alt="Wheat field under a cloudy evening sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND4</strong><span>2 stops</span></p><p>Golden hour and deep shade, ISO 50–250. Saves the sky when the bare lens clips at ISO 50.</p></div></li>
-        <li class="item reveal"><span class="bullet"><img src="assets/overcast.jpg" alt="Pasture under a grey storm sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND8</strong><span>3 stops</span></p><p>Cloudy, typical UK day, ISO 50–200. The default walkaround filter.</p></div></li>
+        <li class="item reveal"><span class="bullet"><img src="assets/overcast.jpg" alt="Pasture under a grey storm sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND8</strong><span>3 stops</span></p><p>Cloudy or overcast day, ISO 50–200. The default walkaround filter.</p></div></li>
         <li class="item reveal"><span class="bullet"><img src="assets/midday.jpg" alt="Track through fields under a deep blue sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND64</strong><span>6 stops</span></p><p>Hazy sun at ISO 250–400, open midday sky at ISO 50–160. Essential for the f/1.68 main.</p><p class="flag">Or stack ND8 + ND4 for 5 stops, tripod only.</p></div></li>
         <li class="item reveal"><span class="bullet"><img src="assets/athmuqam-waterfall-long-exposure.jpg" alt="Waterfall blurred to silk by a long exposure" width="1600" height="1066"></span><div><p class="item-top"><strong>ND1000</strong><span>10 stops</span></p><p>Motion blur and trails, ISO 50–100, shutter 1/2s to 2s for waterfalls.</p><p class="flag">Tripod only.</p></div></li>
       </ul>
