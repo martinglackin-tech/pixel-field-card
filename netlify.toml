@@ -1,0 +1,13 @@
+# Static site: no build step, publish the repo root.
+[build]
+  publish = "."
+
+# Browsers must always check for a new service worker and manifest, so updates show on the next load.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "no-cache"
