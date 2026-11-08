@@ -1,4 +1,4 @@
-// The app moved to https://pixelfieldguide.netlify.app/. Installed copies still check this file
+// The app moved to https://pixel-field-card.martinglackin.workers.dev/. Installed copies still check this file
 // for updates, so this worker deletes the old offline copy and removes itself.
 // Only field-card-* caches: every app on this GitHub Pages site shares Cache Storage.
 self.addEventListener('install', () => self.skipWaiting());
