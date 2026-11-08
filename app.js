@@ -14,7 +14,7 @@
     midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.' },
     trails: { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', iso: [50, 100], wb: '5600K', note: 'Tripod only: take the phone off the gimbal.', tripod: true }
   };
-  const SHUTTER = { 24: '1/50s', 25: '1/50s', 30: '1/60s', 50: '1/100s', 60: '1/120s' };
+  const SHUTTER = { 25: '1/50s', 50: '1/100s' };
 
   let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
   if (!LIGHTS[light]) light = 'cloudy';
@@ -44,12 +44,9 @@
     } else {
       out.shutter = SHUTTER[fps]; out.shutterK = 'shutter, 180°';
       const fpsNote = {
-        // Europe: 50 Hz mains, so lights flicker at 100 Hz. 1/50s and 1/100s are flicker-free; 1/60s and 1/120s are not.
-        24: { t: 'Flicker-free under Europe\'s 50 Hz lights at 1/50s. For European delivery, 25p is the usual choice.' },
+        // Europe: 50 Hz mains, so lights flicker at 100 Hz. 1/50s and 1/100s are both flicker-free.
         25: { t: 'Flicker-free under Europe\'s 50 Hz lights. The standard frame rate for Europe.' },
-        30: { t: 'Europe\'s lights run at 50 Hz, so 1/60s can flicker or band indoors and under street lights. Use 25p, or keep 30p for daylight only.', warn: true },
         50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. 1/100s is 1 stop darker than the table: drop one ND or lift ISO. Conform to 25p in Resolve.', warn: true },
-        60: { t: 'Slow motion, but 1/120s can flicker under Europe\'s 50 Hz lights: use 50p indoors and at night. About 1¼ stops darker than the table: drop one ND or lift ISO. Conform to 24, 25 or 30p.', warn: true }
       }[fps];
       if (fpsNote) out.notes.push(fpsNote);
     }
