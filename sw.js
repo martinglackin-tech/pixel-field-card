@@ -1,8 +1,8 @@
 // Offline cache so the card works in the field without signal.
 // Always checks the server first (bypassing the browser's HTTP cache), so updates show on the next load.
-const CACHE = 'field-card-v9';
+const CACHE = 'field-card-v10';
 const FILES = [
-  './', 'index.html', 'styles.css?v=9', 'app.js?v=9',
+  './', 'index.html', 'styles.css?v=10', 'app.js?v=10',
   'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
   'assets/athmuqam-waterfall-long-exposure.jpg',
   'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png'
