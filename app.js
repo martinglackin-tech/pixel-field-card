@@ -22,6 +22,18 @@
 
   const img = $('o-img'), result = document.querySelector('.result');
 
+  // Shrink the filter name until it fits its column, whatever the screen or text size.
+  function fitND() {
+    const el = $('o-nd');
+    el.style.fontSize = '';
+    const room = el.clientWidth;
+    if (!room) return;
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > room && size > 24) { size -= 2; el.style.fontSize = size + 'px'; }
+  }
+  addEventListener('resize', fitND);
+  if (document.fonts) document.fonts.ready.then(fitND);
+
   function compute() {
     const L = LIGHTS[light];
     const out = { nd: L.nd, wb: L.wb, notes: [{ t: L.note, warn: !!L.tripod }] };
@@ -48,6 +60,7 @@
 
     $('o-nd').textContent = o.nd;
     $('o-nd').classList.toggle('long', o.nd.length > 4);
+    fitND();
     $('o-shutter').textContent = o.shutter;
     $('o-shutter-k').textContent = o.shutterK;
     $('o-iso').textContent = o.iso;

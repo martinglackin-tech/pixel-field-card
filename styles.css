@@ -71,7 +71,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
   margin-top: clamp(24px, 4vw, 48px);
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, min(34vw, 380px)); gap: clamp(16px, 4vw, 64px); align-items: center;
 }
-.r-nd { font: 700 var(--step-display)/0.82 var(--display); letter-spacing: -0.05em; }
+.r-nd { font: 700 var(--step-display)/0.82 var(--display); letter-spacing: -0.05em; white-space: nowrap; min-width: 0; }
 .r-grid { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 16px clamp(24px, 4vw, 56px); margin-top: clamp(20px, 3vw, 36px); }
 .r-grid p { display: flex; flex-direction: column; }
 .r-v { font: 700 var(--step-lead)/1.05 var(--display); letter-spacing: -0.02em; }
