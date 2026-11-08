@@ -1,52 +1,26 @@
 [
- {
-  "file": "assets/athmuqam-waterfall-long-exposure.jpg",
-  "media": "image",
-  "ref": "openverse:788f9911-16d7-4b61-80c4-e7c4257a5032",
-  "title": "Athmuqam waterfall (Long Exposure)",
-  "creator": "Sharjeel Ahmed Khan",
-  "creatorUrl": "https://commons.wikimedia.org/w/index.php?title=User:Sharjeel_Ahmed_Khan&action=edit&redlink=1",
-  "date": null,
-  "license": "CC BY-SA 4.0",
-  "licenseCode": "by-sa",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-  "creditRequired": true,
-  "page": "https://commons.wikimedia.org/w/index.php?curid=49151754",
-  "via": "Wikimedia Commons",
-  "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Athmuqam_waterfall_%28Long_Exposure%29.jpg/1920px-Athmuqam_waterfall_%28Long_Exposure%29.jpg",
-  "width": 1920,
-  "height": 1280,
-  "bytes": 1020008,
-  "credit": "\"Athmuqam waterfall (Long Exposure)\" by Sharjeel Ahmed Khan, CC BY-SA 4.0, via Wikimedia Commons",
-  "notes": [
-   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
-  ],
-  "saved": "2026-11-08T13:35:21.488Z"
- },
- {
-  "file": "assets/tresaith-waterfall.webm",
-  "media": "video",
-  "poster": "assets/tresaith-waterfall-poster.jpg",
-  "ref": "commons:94084914",
-  "title": "Tresaith Waterfall",
-  "creator": "Darren Wyn Rees",
-  "creatorUrl": null,
-  "date": "2020-09-13",
-  "license": "CC BY-SA 4.0",
-  "licenseCode": "by-sa",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "creditRequired": true,
-  "page": "https://commons.wikimedia.org/wiki/File:Tresaith_Waterfall.ogv",
-  "via": "Wikimedia Commons",
-  "video": "https://upload.wikimedia.org/wikipedia/commons/transcoded/2/2a/Tresaith_Waterfall.ogv/Tresaith_Waterfall.ogv.480p.vp9.webm",
-  "width": 854,
-  "height": 480,
-  "duration": 6.8,
-  "bytes": 864103,
-  "credit": "\"Tresaith Waterfall\" by Darren Wyn Rees, CC BY-SA 4.0, via Wikimedia Commons",
-  "notes": [
-   "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
-  ],
-  "saved": "2026-11-08T13:35:22.965Z"
- }
+  {
+    "file": "assets/athmuqam-waterfall-long-exposure.jpg",
+    "media": "image",
+    "ref": "openverse:788f9911-16d7-4b61-80c4-e7c4257a5032",
+    "title": "Athmuqam waterfall (Long Exposure)",
+    "creator": "Sharjeel Ahmed Khan",
+    "creatorUrl": "https://commons.wikimedia.org/w/index.php?title=User:Sharjeel_Ahmed_Khan&action=edit&redlink=1",
+    "date": null,
+    "license": "CC BY-SA 4.0",
+    "licenseCode": "by-sa",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "creditRequired": true,
+    "page": "https://commons.wikimedia.org/w/index.php?curid=49151754",
+    "via": "Wikimedia Commons",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Athmuqam_waterfall_%28Long_Exposure%29.jpg/1920px-Athmuqam_waterfall_%28Long_Exposure%29.jpg",
+    "width": 1920,
+    "height": 1280,
+    "bytes": 1020008,
+    "credit": "\"Athmuqam waterfall (Long Exposure)\" by Sharjeel Ahmed Khan, CC BY-SA 4.0, via Wikimedia Commons",
+    "notes": [
+      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+    ],
+    "saved": "2026-11-08T13:35:21.488Z"
+  }
 ]

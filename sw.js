@@ -1,9 +1,9 @@
 // Offline cache so the card works in the field without signal.
-const CACHE = 'field-card-v3';
+const CACHE = 'field-card-v4';
 const FILES = [
   './', 'index.html', 'styles.css', 'app.js',
-  'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg', 'assets/grass.jpg',
-  'assets/athmuqam-waterfall-long-exposure.jpg', 'assets/tresaith-waterfall-poster.jpg', 'assets/tresaith-waterfall.webm'
+  'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
+  'assets/athmuqam-waterfall-long-exposure.jpg'
 ];
 self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(

@@ -4,13 +4,11 @@ An interactive, phone-first field guide for shooting cinematic video on a **Pixe
 
 ## What's in it
 
-- **Rig it in thirty seconds** – the four-step rigging checklist, tickable (remembered on your phone).
-- **Read the light** – the exposure dial: pick the light and frame rate, get the ND filter, shutter, ISO range and gimbal weight.
-- **Fixed apertures** – f/1.95, f/1.68 and f/2.8, and why the ND does the work.
-- **Shutter at 180° / Filters in the bag** – the frame-rate and ND reference.
-- **Lock the app down** – step cards for Blackmagic Camera and MotionCam Pro v4.
+- **Expose** – pick the light, lens (1x main or 0.5x ultra-wide) and frame rate; read the ND filter, shutter, ISO and white balance, with notes only when they apply.
+- **Rig** – the four-step rigging checklist, tickable (remembered on your phone).
+- **Apps** – Blackmagic Camera and MotionCam Pro steps, filled in with the values from the dial.
 
-It works offline after the first visit (service worker), so it still opens in a field with no signal. Add it to your home screen from Chrome for one-tap access.
+It works offline after the first visit (service worker), so it still opens with no signal. Add it to your home screen from Chrome for one-tap access.
 
 ## Run locally
 
@@ -23,6 +21,5 @@ Then open http://localhost:4173. No build step: plain HTML, CSS and JS.
 ## Credits
 
 - “Athmuqam waterfall (Long Exposure)” by Sharjeel Ahmed Khan, CC BY-SA 4.0, via Wikimedia Commons
-- “Tresaith Waterfall” by Darren Wyn Rees, CC BY-SA 4.0, via Wikimedia Commons
-- Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch, elizabeth lies and Zugr (Unsplash licence, via picsum.photos)
+- Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch and elizabeth lies (Unsplash licence, via picsum.photos)
 - Type: League Spartan and Figtree (Google Fonts)
