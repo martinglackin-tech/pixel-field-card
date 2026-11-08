@@ -12,12 +12,14 @@
     midday:  { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', stops: 6, iso: '50–160', note: 'Essential for the f/1.68 main lens under open blue sky.' },
     trails:  { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', stops: 10, iso: '50–100', note: 'Tripod only. Set the shutter to 1/2s – 2s for waterfalls and trails.', shutter: '1/2s – 2s', angle: 'Long exposure', tripod: true }
   };
+  const LENS = { uw: '0.5x ultra-wide at f/1.7', main: '1x main at f/1.68', };
   const FPS = { 24: '1/50s', 25: '1/50s', 30: '1/60s', 60: '1/120s' };
   const BASE = 286, LIMIT = 300;
 
   const $ = (id) => document.getElementById(id);
   const img = $('dial-img'), readout = document.querySelector('.readout');
-  let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
+  let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25')), lens = store.get('lens', 'main');
+  if (!LENS[lens]) lens = 'main';
   if (!LIGHTS[light]) light = 'cloudy';
   if (!FPS[fps]) fps = '25';
 
@@ -25,6 +27,8 @@
     const L = LIGHTS[light];
     document.querySelectorAll('[data-light]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.light === light)));
     document.querySelectorAll('[data-fps]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fps === fps)));
+    document.querySelectorAll('[data-lens]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
+    $('o-lens').textContent = LENS[lens];
 
     $('o-filter').textContent = L.nd;
     $('o-stops').textContent = L.stops + '-stop K&F filter';
@@ -33,9 +37,14 @@
     $('o-weight').textContent = L.tripod ? 'Off the gimbal, onto the tripod' : BASE + ' g on the gimbal, ' + (LIMIT - BASE) + ' g spare';
     let note = L.note;
     if (!L.tripod && fps === '60') note = 'At 1/120s you lose about 1⅓ stops against the 1/50s table: drop one ND grade or lift ISO towards 400.';
+    let warn = !!L.tripod || fps === '60';
+    if (lens === 'uw' && !L.tripod) {
+      note = 'Same filter as the main. The smaller sensor is noisier: keep ISO at 200 or below and step up an ND before raising it.';
+      $('o-iso').textContent = 'ISO ' + L.iso.replace(/–(\d+)$/, (m, hi) => '–' + Math.min(+hi, 200));
+    }
     const n = $('o-note');
     n.textContent = note;
-    n.classList.toggle('warn', !!L.tripod || fps === '60' && !L.tripod);
+    n.classList.toggle('warn', warn);
 
     if (img.getAttribute('src') !== L.img) {
       if (animate) {
@@ -49,6 +58,9 @@
 
   document.querySelectorAll('[data-light]').forEach(b => b.addEventListener('click', () => {
     light = b.dataset.light; store.set('light', light); render(true);
+  }));
+  document.querySelectorAll('[data-lens]').forEach(b => b.addEventListener('click', () => {
+    lens = b.dataset.lens; store.set('lens', lens); render(true);
   }));
   document.querySelectorAll('[data-fps]').forEach(b => b.addEventListener('click', () => {
     fps = b.dataset.fps; store.set('fps', fps); render(true);
