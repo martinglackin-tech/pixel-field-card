@@ -11,3 +11,18 @@
   for = "/manifest.webmanifest"
   [headers.values]
     Cache-Control = "no-cache"
+
+# The app moved to Cloudflare: https://pixel-field-card.martinglackin.workers.dev/
+# Installed copies still check sw.js, so serve a worker that clears the old offline copy and removes itself.
+[[redirects]]
+  from = "/sw.js"
+  to = "/retire-sw.js"
+  status = 200
+  force = true
+
+# Everything else goes to the new address.
+[[redirects]]
+  from = "/*"
+  to = "https://pixel-field-card.martinglackin.workers.dev/:splat"
+  status = 301
+  force = true
