@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Field Card has moved</title>
+<meta name="theme-color" content="#e4e7e3">
+<link rel="icon" href="icons/icon.svg">
+<style>
+  :root { --bg: #e4e7e3; --fg: #1d211e; --muted: #4f5650; --accent: #1d211e; --accent-fg: #e4e7e3; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #161917; --fg: #e4e7e3; --muted: #a3aaa4; --accent: #e4e7e3; --accent-fg: #161917; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px;
+         background: var(--bg); color: var(--fg); font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 26rem; }
+  h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 12px; }
+  p { margin: 0 0 16px; color: var(--muted); }
+  a.go { display: inline-block; margin: 8px 0 24px; padding: 14px 22px; border-radius: 12px;
+         background: var(--accent); color: var(--accent-fg); text-decoration: none; font-weight: 600; }
+  .warn { font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pixel Field Card has moved</h1>
+  <p>The card now lives at its own address, so it no longer shares storage with the other apps on this site.</p>
+  <a class="go" href="https://pixelfieldguide.netlify.app/">Open the new Field Card</a>
+  <p>Install it from there (Chrome menu → Add to Home screen), then remove this old one.</p>
+  <p class="warn">If removing the old app offers to clear the site's data, say no: that data also belongs to the other phrasebook apps on this site.</p>
+</main>
+<script>
+  // Remove this app's old offline copy only. Every app on martinglackin-tech.github.io shares
+  // service worker registrations and Cache Storage, so leave anything outside this folder alone.
+  (async () => {
+    const scope = new URL('./', location.href).href;
+    try {
+      if ('serviceWorker' in navigator) {
+        for (const reg of await navigator.serviceWorker.getRegistrations()) {
+          if (reg.scope === scope) await reg.unregister();
+        }
+      }
+      if ('caches' in self) {
+        for (const key of await caches.keys()) if (key.startsWith('field-card-')) await caches.delete(key);
+      }
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
