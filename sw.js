@@ -1,7 +1,7 @@
 // Offline cache so the card works in the field without signal.
-const CACHE = 'field-card-v6';
+const CACHE = 'field-card-v7';
 const FILES = [
-  './', 'index.html', 'styles.css', 'app.js',
+  './', 'index.html', 'styles.css?v=7', 'app.js?v=7',
   'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
   'assets/athmuqam-waterfall-long-exposure.jpg'
 ];
