@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Field Card</title>
+<meta name="description" content="Rig, expose and lock a Pixel 10 Pro XL on the OM 7P gimbal with K&amp;F 67mm ND filters.">
+<meta name="theme-color" content="#3d0012">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- half-disc: the 180° shutter -->
+    <symbol id="half" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="var(--surface-2)"/>
+      <path d="M32 2a30 30 0 0 1 0 60z" fill="var(--ink)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="bar">
+  <a class="wordmark" href="#top">field card</a>
+  <nav aria-label="Sections">
+    <a class="link" href="#rig">Rig</a>
+    <a class="link" href="#dial">Expose</a>
+    <a class="link" href="#reference">Reference</a>
+    <a class="link" href="#apps">Apps</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="h-title">
+    <div class="hero-disc" aria-hidden="true"></div>
+    <div class="hero-copy reveal-group">
+      <h1 id="h-title" class="reveal">Pixel 10 Pro XL field card</h1>
+      <p class="lead reveal">Rig, expose and lock the phone on the OM&nbsp;7P gimbal with K&amp;F 67mm ND filters, before the light changes.</p>
+      <a class="button reveal" href="#dial">Set my exposure</a>
+    </div>
+    <div class="hero-weight reveal-group">
+      <p class="weight-figure reveal"><span class="num" data-count="286">286</span>&nbsp;g</p>
+      <p class="weight-note reveal">of the gimbal's 300&thinsp;g limit. Phone 232, SmallRig 5174 clamp 35, one K&amp;F ND 19.</p>
+    </div>
+  </section>
+
+  <!-- RIG -->
+  <section class="rig" id="rig" aria-labelledby="h-rig">
+    <h2 id="h-rig" class="rig-head reveal">Rig it in thirty seconds</h2>
+    <ol class="tiles" role="list">
+      <li class="stage s1 reveal">
+        <div class="tile">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Clamp sliding over the top edge of the phone">
+            <rect x="58" y="60" width="84" height="160" rx="16" fill="var(--fg)"/>
+            <rect x="58" y="78" width="84" height="26" fill="var(--fg2)"/>
+            <circle cx="78" cy="91" r="7" fill="var(--fg)"/><circle cx="96" cy="91" r="7" fill="var(--fg)"/><circle cx="120" cy="91" r="7" fill="var(--fg)"/>
+            <rect class="slide-in" x="50" y="40" width="70" height="70" rx="8" fill="var(--fg)" opacity=".92"/>
+            <circle class="slide-in" cx="87" cy="91" r="22" fill="var(--fg2)"/>
+            <circle class="slide-in" cx="87" cy="91" r="15" fill="var(--tile)"/>
+          </svg>
+        </div>
+        <label class="check"><input type="checkbox" data-step="clamp"><span class="check-name">Clamp from the top</span></label>
+        <p>Slide the SmallRig 5174 over the top edge of the bare phone so it covers the 0.5x ultra-wide and the 1x main.</p>
+      </li>
+      <li class="stage s2 reveal">
+        <div class="tile">
+          <svg viewBox="0 0 200 200" role="img" aria-label="The filter ring stopping just left of the laser autofocus dot">
+            <rect x="0" y="70" width="200" height="70" fill="var(--fg)"/>
+            <circle cx="80" cy="105" r="48" fill="var(--fg2)"/>
+            <circle cx="80" cy="105" r="34" fill="var(--fg)"/>
+            <circle cx="66" cy="105" r="10" fill="var(--fg2)"/><circle cx="94" cy="105" r="10" fill="var(--fg2)"/>
+            <circle cx="150" cy="105" r="10" fill="var(--fg2)"/>
+            <circle class="pulse" cx="172" cy="105" r="5" fill="var(--fg2)"/>
+          </svg>
+        </div>
+        <label class="check"><input type="checkbox" data-step="laser"><span class="check-name">Clear the laser AF</span></label>
+        <p>Stop the right edge of the 67mm ring just left of the laser AF dot on the right of the visor.</p>
+      </li>
+      <li class="stage s3 reveal">
+        <div class="tile">
+          <svg viewBox="0 0 200 200" role="img" aria-label="An ND filter threaded onto the 67mm ring">
+            <circle cx="100" cy="100" r="76" fill="var(--fg)"/>
+            <circle cx="100" cy="100" r="62" fill="var(--fg2)"/>
+            <circle class="spin" cx="100" cy="100" r="50" fill="var(--fg)" opacity=".55"/>
+            <rect class="spin" x="96" y="24" width="8" height="14" fill="var(--fg2)"/>
+          </svg>
+        </div>
+        <label class="check"><input type="checkbox" data-step="filter"><span class="check-name">Thread one filter</span></label>
+        <p>Screw on the K&amp;F ND for the light. One only on the gimbal: two filters take you to about 305&thinsp;g.</p>
+      </li>
+      <li class="stage s4 reveal">
+        <div class="tile">
+          <svg viewBox="0 0 240 200" role="img" aria-label="Phone balanced in the OM 7P clamp, moved towards the camera bar">
+            <rect x="108" y="128" width="30" height="80" rx="8" fill="var(--fg)"/>
+            <rect x="116" y="64" width="12" height="70" fill="var(--fg)"/>
+            <rect x="60" y="56" width="68" height="12" fill="var(--fg)"/>
+            <g class="tilt">
+              <rect x="20" y="10" width="200" height="64" rx="12" fill="var(--fg)"/>
+              <rect x="176" y="10" width="26" height="64" fill="var(--fg2)"/>
+              <circle cx="189" cy="30" r="9" fill="var(--fg)"/><circle cx="189" cy="54" r="9" fill="var(--fg)"/>
+              <rect x="74" y="4" width="34" height="76" rx="4" fill="var(--fg2)"/>
+              <rect x="20" y="62" width="40" height="12" fill="var(--fg2)"/>
+            </g>
+          </svg>
+        </div>
+        <label class="check"><input type="checkbox" data-step="balance"><span class="check-name">Balance, then power</span></label>
+        <p>Snap the OM 7P clamp 5–8mm closer to the camera bar, just below the volume buttons, with the Multifunctional Module on the bottom edge. Check horizontal balance before you power on.</p>
+      </li>
+    </ol>
+    <p class="rig-status" aria-live="polite"><span id="rig-count">0 of 4</span> done · <button type="button" class="text-button" id="rig-reset">Clear the list</button></p>
+  </section>
+
+  <!-- EXPOSURE DIAL (live thing) -->
+  <section class="dial" id="dial" aria-labelledby="h-dial">
+    <div class="dial-disc">
+      <div class="iris">
+        <img id="dial-img" src="assets/overcast.jpg" alt="Flat green pasture under a heavy grey sky" width="1400" height="1400">
+      </div>
+    </div>
+
+    <div class="dial-controls">
+      <h2 id="h-dial" class="dial-head">Read the light</h2>
+      <div class="lights" role="group" aria-label="Lighting condition">
+        <button type="button" class="light" data-light="golden">Golden hour or shade</button>
+        <button type="button" class="light" data-light="cloudy" aria-pressed="true">Cloudy UK day</button>
+        <button type="button" class="light" data-light="hazy">Hazy sun</button>
+        <button type="button" class="light" data-light="midday">Midday sun</button>
+        <button type="button" class="light" data-light="trails">Tripod trails</button>
+      </div>
+      <div class="fps" role="group" aria-label="Frame rate">
+        <button type="button" data-fps="24">24p</button>
+        <button type="button" data-fps="25" aria-pressed="true">25p</button>
+        <button type="button" data-fps="30">30p</button>
+        <button type="button" data-fps="60">60p</button>
+      </div>
+    </div>
+
+    <div class="readout" aria-live="polite">
+      <p class="r-filter"><span id="o-filter">ND8</span></p>
+      <p class="r-line" id="o-stops">3-stop K&amp;F filter</p>
+      <p class="r-line" id="o-shutter">1/50s shutter, 180°</p>
+      <p class="r-line" id="o-iso">ISO 50–200</p>
+      <p class="r-line" id="o-weight">286 g on the gimbal, 14 g spare</p>
+      <p class="r-note" id="o-note">Default walkaround filter for overcast daylight.</p>
+    </div>
+  </section>
+
+  <!-- APERTURES -->
+  <section class="glass" aria-labelledby="h-glass">
+    <h2 id="h-glass" class="visually-hidden">Fixed apertures</h2>
+    <p class="statement reveal">The 0.5x ultra-wide <span class="slot s-wide"><img src="assets/grass.jpg" alt="Grass heads, wide" width="1400" height="1400"></span> sits at f/1.95, the main <span class="slot s-main"><img src="assets/grass.jpg" alt="Grass heads, closer" width="1400" height="1400"></span> at f/1.68, the 5x tele <span class="slot s-tele"><img src="assets/grass.jpg" alt="Grass heads, tight" width="1400" height="1400"></span> at f/2.8. Nothing stops down, so the ND does.</p>
+    <div class="frames reveal" role="group" aria-label="The same field framed by each lens">
+      <figure class="frame f-wide"><div class="frame-disc"><img src="assets/grass.jpg" alt="Grass heads before a treeline, framed wide" width="1400" height="1400"></div><figcaption>0.5x · f/1.95</figcaption></figure>
+      <figure class="frame f-main"><div class="frame-disc"><img src="assets/grass.jpg" alt="The same grass heads, framed at 1x" width="1400" height="1400"></div><figcaption>1x · f/1.68</figcaption></figure>
+      <figure class="frame f-tele"><div class="frame-disc"><img src="assets/grass.jpg" alt="One grass head, framed at 5x" width="1400" height="1400"></div><figcaption>5x · f/2.8</figcaption></figure>
+    </div>
+    <div class="glass-foot reveal">
+      <p>The 5174 ring covers the ultra-wide and the main. The 5x tele sits outside it, so it shoots unfiltered.</p>
+      <a class="button" href="#dial">Back to the dial</a>
+    </div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section class="reference" id="reference" aria-labelledby="h-ref">
+    <h2 id="h-ref" class="visually-hidden">Shutter and filter reference</h2>
+    <div class="cat cat-shutter">
+      <div class="cat-head reveal"><h3>Shutter at 180°</h3><span>Shutter = 2 × frame rate</span></div>
+      <ul class="menu" role="list">
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>24 fps</strong><span>1/48 or 1/50s</span></p><p>Narrative, the cinematic standard.</p></div></li>
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>25 fps</strong><span>1/50s</span></p><p>UK and PAL standard. Stops 50&thinsp;Hz flicker from indoor lights.</p></div></li>
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>30 fps</strong><span>1/60s</span></p><p>Smooth walk-and-talks and social video.</p></div></li>
+        <li class="item reveal"><svg class="bullet" aria-hidden="true"><use href="#half"/></svg><div><p class="item-top"><strong>60 fps</strong><span>1/120s</span></p><p>Slow-motion b-roll. Conform to 24, 25 or 30p in Resolve.</p></div></li>
+      </ul>
+      <div class="cat-side reveal">
+        <figure class="loop"><div class="loop-disc"><video src="assets/tresaith-waterfall.webm" poster="assets/tresaith-waterfall-poster.jpg" muted loop playsinline autoplay preload="auto" width="854" height="480" aria-label="Tresaith waterfall in Wales, looping"></video></div>
+        <figcaption>Tresaith, Wales. Shoot water like this at 60p and 1/120s, then conform it for slow motion.</figcaption></figure>
+        <p class="cat-foot">Keep ISO between 50 and 400 for clean shadows.</p>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-head reveal"><h3>Filters in the bag</h3><span>K&amp;F 67mm</span></div>
+      <ul class="menu" role="list">
+        <li class="item reveal"><span class="bullet"><img src="assets/golden.jpg" alt="Wheat field under a cloudy evening sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND4</strong><span>2 stops</span></p><p>Golden hour and deep shade, ISO 50–250. Saves the sky when the bare lens clips at ISO 50.</p></div></li>
+        <li class="item reveal"><span class="bullet"><img src="assets/overcast.jpg" alt="Pasture under a grey storm sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND8</strong><span>3 stops</span></p><p>Cloudy, typical UK day, ISO 50–200. The default walkaround filter.</p></div></li>
+        <li class="item reveal"><span class="bullet"><img src="assets/midday.jpg" alt="Track through fields under a deep blue sky" width="1400" height="1400"></span><div><p class="item-top"><strong>ND64</strong><span>6 stops</span></p><p>Hazy sun at ISO 250–400, open midday sky at ISO 50–160. Essential for the f/1.68 main.</p><p class="flag">Or stack ND8 + ND4 for 5 stops, tripod only.</p></div></li>
+        <li class="item reveal"><span class="bullet"><img src="assets/athmuqam-waterfall-long-exposure.jpg" alt="Waterfall blurred to silk by a long exposure" width="1600" height="1066"></span><div><p class="item-top"><strong>ND1000</strong><span>10 stops</span></p><p>Motion blur and trails, ISO 50–100, shutter 1/2s to 2s for waterfalls.</p><p class="flag">Tripod only.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- APPS -->
+  <section class="apps" id="apps" aria-labelledby="h-apps">
+    <div class="apps-top">
+      <h2 id="h-apps" class="apps-head reveal">Lock the app down</h2>
+      <div class="app-switch reveal" role="group" aria-label="Camera app">
+        <button type="button" data-app="bm" aria-pressed="true">Blackmagic Camera</button>
+        <button type="button" data-app="mc">MotionCam Pro v4</button>
+      </div>
+    </div>
+
+    <div class="deck" data-deck="bm">
+      <p class="deck-note">10-bit HEVC for a fast turnaround.</p>
+      <details name="bm" open style="--i:0">
+        <summary><span class="tab">Shutter</span><span class="q">Set the 180° rule</span></summary>
+        <div class="a"><p>Settings (gear) › Camera › Shutter Measurement › <strong>Shutter Angle</strong>. Tap Shutter on the top HUD, choose <strong>180°</strong> and tap the padlock until it turns blue.</p></div>
+      </details>
+      <details name="bm" style="--i:1">
+        <summary><span class="tab">Stabilisation</span><span class="q">Turn digital stabilisation off</span></summary>
+        <div class="a"><p>Settings › Camera › Stabilization › <strong>Off</strong>. EIS warps the picture when it fights the OM 7P motors.</p></div>
+      </details>
+      <details name="bm" style="--i:2">
+        <summary><span class="tab">Zebras</span><span class="q">Expose with zebras at 95%</span></summary>
+        <div class="a"><p>Monitor icon › <strong>Zebra 95%</strong>. Set ISO to <strong>50–100</strong>. Stripes on clouds or skin: step up to the next ND. Still dark on the ND64: raise ISO to <strong>200–400</strong>.</p></div>
+      </details>
+      <details name="bm" style="--i:3">
+        <summary><span class="tab">WB and focus</span><span class="q">Lock white balance and focus</span></summary>
+        <div class="a"><p>Tap WB, choose <strong>5600K</strong> daylight or <strong>6500K</strong> cloudy, and lock. Tap the subject to focus, then switch <strong>AF to MF</strong> so dark glass can't set off focus hunting.</p></div>
+      </details>
+    </div>
+
+    <div class="deck" data-deck="mc">
+      <p class="deck-note">RAW video or Direct Log.</p>
+      <details name="mc" open style="--i:0">
+        <summary><span class="tab">Mode</span><span class="q">Pick the mode, then the spanner</span></summary>
+        <div class="a"><p>Lower-left mode selector to <strong>Direct Log</strong> or <strong>RAW Video</strong>. Spanner (top left): <strong>Histogram on</strong>, <strong>OIS off</strong> for gimbal work. For 25p, scroll to the yellow hidden frame rates in the FPS menu.</p></div>
+      </details>
+      <details name="mc" style="--i:1">
+        <summary><span class="tab">Preview</span><span class="q">Engage direct preview</span></summary>
+        <div class="a"><p>Tap <strong>DP</strong> on the top bar, then the <strong>sun icon</strong> (sensor clipping) so blown RAW highlights glow on screen.</p></div>
+      </details>
+      <details name="mc" style="--i:2">
+        <summary><span class="tab">Exposure</span><span class="q">Lock shutter and ISO</span></summary>
+        <div class="a"><p>Tap Exposure (S / ISO). Slide the shutter to <strong>1/50s</strong> (or 1/60s) and long-press until it turns yellow. Start ISO at <strong>50</strong> and raise to <strong>160–400</strong> until the RGB clipping circles read <strong>0.00%</strong>.</p></div>
+      </details>
+      <details name="mc" style="--i:3">
+        <summary><span class="tab">WB and focus</span><span class="q">Lock white balance and focus</span></summary>
+        <div class="a"><p>Point at neutral ground and long-press WB until it turns yellow. Tap Focus, set peaking to <strong>Medium</strong>, dial focus in and leave it in manual.</p></div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" aria-labelledby="h-foot">
+  <h2 id="h-foot" class="visually-hidden">Pixel 10 Pro XL field card</h2>
+  <svg class="visor" viewBox="0 0 1200 300" role="img" aria-label="The Pixel camera visor: three lenses and the laser AF dot">
+    <rect x="0" y="40" width="1200" height="220" rx="110" fill="var(--surface-2)"/>
+    <circle cx="160" cy="150" r="92" fill="var(--ink)"/>
+    <circle cx="370" cy="150" r="92" fill="var(--ink)"/>
+    <circle cx="580" cy="150" r="92" fill="var(--ink)"/>
+    <circle cx="730" cy="150" r="20" fill="var(--ink)"/>
+    <text x="160" y="170" text-anchor="middle">0.5x</text>
+    <text x="370" y="170" text-anchor="middle">1x</text>
+    <text x="580" y="170" text-anchor="middle">5x</text>
+    <text x="1130" y="182" text-anchor="end" class="visor-word">286 g</text>
+  </svg>
+  <div class="foot-grid">
+    <nav aria-label="Footer">
+      <a class="link" href="#rig">Rig checklist</a>
+      <a class="link" href="#dial">Exposure dial</a>
+      <a class="link" href="#reference">Shutter and filters</a>
+      <a class="link" href="#apps">App lockdown</a>
+    </nav>
+    <p class="credits">Pictures and footage: <a href="https://commons.wikimedia.org/w/index.php?curid=49151754">“Athmuqam waterfall (Long Exposure)”</a> by Sharjeel Ahmed Khan, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Tresaith_Waterfall.ogv">“Tresaith Waterfall”</a> by Darren Wyn Rees, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, both via Wikimedia Commons. Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch, elizabeth lies and Zugr, <a href="https://unsplash.com/license">Unsplash licence</a>.</p>
+  </div>
+  <div class="foot-last">
+    <p>Pixel 10 Pro XL · OM 7P · K&amp;F 67mm ND</p>
+    <a class="button small" href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
