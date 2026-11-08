@@ -69,7 +69,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .title { max-width: 12em; }
 .result {
   margin-top: clamp(24px, 4vw, 48px);
-  display: grid; grid-template-columns: 1fr minmax(0, min(34vw, 380px)); gap: clamp(16px, 4vw, 64px); align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, min(34vw, 380px)); gap: clamp(16px, 4vw, 64px); align-items: center;
 }
 .r-nd { font: 700 var(--step-display)/0.82 var(--display); letter-spacing: -0.05em; }
 .r-grid { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 16px clamp(24px, 4vw, 56px); margin-top: clamp(20px, 3vw, 36px); }
@@ -157,7 +157,8 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 }
 @media (max-width: 760px) {
   .title { font-size: 2rem; }
-  .result { grid-template-columns: 1fr 32vw; gap: 16px; }
+  .result { grid-template-columns: minmax(0, 1fr) 32vw; gap: 16px; }
+  .r-nd.long { font-size: 15vw; }
   .r-nd { grid-row: 1; grid-column: 1; align-self: center; }
   .r-photo { grid-row: 1; grid-column: 2; }
   .r-nd { font-size: 22vw; }

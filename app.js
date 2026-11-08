@@ -15,11 +15,9 @@
     trails: { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', iso: [50, 100], wb: '5600K', note: 'Tripod only: take the phone off the gimbal.', tripod: true }
   };
   const SHUTTER = { 24: '1/50s', 25: '1/50s', 30: '1/60s', 60: '1/120s' };
-  const UW_MAX_ISO = 200;
 
-  let light = store.get('light', 'cloudy'), lens = store.get('lens', 'main'), fps = String(store.get('fps', '25'));
+  let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
   if (!LIGHTS[light]) light = 'cloudy';
-  if (!['main', 'uw'].includes(lens)) lens = 'main';
   if (!SHUTTER[fps]) fps = '25';
 
   const img = $('o-img'), result = document.querySelector('.result');
@@ -27,7 +25,7 @@
   function compute() {
     const L = LIGHTS[light];
     const out = { nd: L.nd, wb: L.wb, notes: [{ t: L.note, warn: !!L.tripod }] };
-    let [lo, hi] = L.iso;
+    const [lo, hi] = L.iso;
 
     if (L.tripod) {
       out.shutter = '1/2 – 2s'; out.shutterK = 'shutter, long exposure';
@@ -39,15 +37,6 @@
       if (fps === '60') out.notes.push({ t: 'At 1/120s you lose about 1⅓ stops: drop one ND grade or lift ISO towards 400. Conform to 24, 25 or 30p for slow motion.', warn: true });
     }
 
-    if (lens === 'uw') {
-      if (lo > UW_MAX_ISO) {
-        out.nd = 'ND8 + ND4'; lo = 125; hi = 200;
-        out.notes = [{ t: 'Too dark for the ultra-wide on the ND64: stack ND8 + ND4 on a tripod, or switch to the 1x.', warn: true }];
-      } else {
-        hi = Math.min(hi, UW_MAX_ISO);
-        out.notes.push({ t: 'Ultra-wide: smaller, noisier sensor. Keep ISO at 200 or below; step up an ND before raising it.' });
-      }
-    }
     out.iso = lo === hi ? String(lo) : lo + '–' + hi;
     return out;
   }
@@ -55,10 +44,10 @@
   function render(animate) {
     const L = LIGHTS[light], o = compute();
     all('[data-light]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.light === light)));
-    all('[data-lens]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
     all('[data-fps]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fps === fps)));
 
     $('o-nd').textContent = o.nd;
+    $('o-nd').classList.toggle('long', o.nd.length > 4);
     $('o-shutter').textContent = o.shutter;
     $('o-shutter-k').textContent = o.shutterK;
     $('o-iso').textContent = o.iso;
@@ -82,7 +71,6 @@
 
   const bind = (attr, set) => all('[data-' + attr + ']').forEach(b => b.addEventListener('click', () => { set(b.dataset[attr]); render(true); }));
   bind('light', v => { light = v; store.set('light', v); });
-  bind('lens', v => { lens = v; store.set('lens', v); });
   bind('fps', v => { fps = v; store.set('fps', v); });
   render(false);
 
