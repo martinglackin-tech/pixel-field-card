@@ -103,8 +103,9 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .r-notes li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-strong); transform: translateY(-1px); }
 .r-notes li.warn { font-weight: 600; }
 .r-notes li.warn::before { background: var(--ink); }
-.result.flash .r-nd, .result.flash .r-v { animation: flash 380ms var(--ease-out); }
-@keyframes flash { from { opacity: .25; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+/* Fade only: no movement, so the values never jump. */
+.r-nd.flash, .r-v.flash { animation: flash 280ms var(--ease-out); }
+@keyframes flash { from { opacity: .3; } to { opacity: 1; } }
 
 .controls { margin-top: clamp(28px, 4vw, 48px); display: grid; gap: 16px; }
 .row { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: center; }

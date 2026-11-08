@@ -22,7 +22,7 @@
   if (!LIGHTS[light]) light = 'cloudy';
   if (!SHUTTER[fps]) fps = '25';
 
-  const img = $('o-img'), result = document.querySelector('.result');
+  const img = $('o-img');
 
   // Shrink the filter name until it fits its column, whatever the screen or text size.
   function fitND() {
@@ -43,7 +43,7 @@
     const [lo, hi] = S.iso;
 
     if (L.tripod) {
-      out.shutter = '1/2 – 2s'; out.shutterK = 'shutter, long exposure';
+      out.shutter = '1/2 – 2s'; out.shutterK = 'long exposure'; // Short enough to stay on one line, so the panel doesn't grow.
     } else {
       out.shutter = SHUTTER[fps]; out.shutterK = 'shutter, 180°';
       const fpsNote = {
@@ -64,13 +64,20 @@
     all('[data-fps]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fps === fps)));
     $('fps-row').hidden = !!L.tripod; // Long exposures don't have a frame rate.
 
-    $('o-nd').textContent = o.nd;
+    // Only values that change fade in; the rest stay still.
+    const set = (id, v) => {
+      const e = $(id);
+      if (e.textContent === v) return;
+      e.textContent = v;
+      if (animate && e.matches('.r-nd, .r-v')) { e.classList.remove('flash'); void e.offsetWidth; e.classList.add('flash'); }
+    };
+    set('o-nd', o.nd);
     $('o-nd').classList.toggle('long', o.nd.length > 4);
     fitND();
-    $('o-shutter').textContent = o.shutter;
-    $('o-shutter-k').textContent = o.shutterK;
-    $('o-iso').textContent = o.iso;
-    $('o-wb').textContent = o.wb;
+    set('o-shutter', o.shutter);
+    set('o-shutter-k', o.shutterK);
+    set('o-iso', o.iso);
+    set('o-wb', o.wb);
 
     const list = $('o-notes');
     list.replaceChildren(...o.notes.map(n => { const li = document.createElement('li'); li.textContent = n.t; if (n.warn) li.className = 'warn'; return li; }));
@@ -85,7 +92,6 @@
         setTimeout(() => { img.onload = () => img.classList.remove('swap'); img.src = L.img; img.alt = L.alt; }, 200);
       } else { img.src = L.img; img.alt = L.alt; }
     }
-    if (animate) { result.classList.remove('flash'); void result.offsetWidth; result.classList.add('flash'); }
   }
 
   const bind = (attr, set) => all('[data-' + attr + ']').forEach(b => b.addEventListener('click', () => { set(b.dataset[attr]); render(true); }));

@@ -1,6 +1,9 @@
 # Static site: no build step, publish the repo root.
 [build]
   publish = "."
+  # Netlify only redirects to Cloudflare now, so skip every build: pushes deploy to Cloudflare only
+  # and Netlify keeps serving the redirect from its last deploy.
+  ignore = "exit 0"
 
 # Browsers must always check for a new service worker and manifest, so updates show on the next load.
 [[headers]]
