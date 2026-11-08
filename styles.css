@@ -197,3 +197,5 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
   .thumb { width: 60px; height: 60px; padding: 6px; }
   .step-text { font-size: 0.9375rem; }
 }
+
+.row[hidden] { display: none; }

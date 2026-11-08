@@ -8,12 +8,14 @@
 
   /* ---------- Data from the field card ---------- */
   const LIGHTS = {
-    golden: { img: 'assets/golden.jpg',   alt: 'Wheat field under a cloudy evening sky', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: 'Protects sky highlights when the bare lens clips at ISO 50.' },
-    cloudy: { img: 'assets/overcast.jpg', alt: 'Flat green pasture under a heavy grey sky', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast daylight.' },
-    hazy:   { img: 'assets/hazy.jpg',     alt: 'Ploughed soil beside a green field under a pale sky', nd: 'ND64', iso: [250, 400], wb: '5600K', note: 'On a tripod you can stack ND8 + ND4 instead, for 5 stops.' },
-    midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.' },
+    golden: { img: 'assets/golden.jpg',   alt: 'Wheat field under a cloudy evening sky', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: 'Protects sky highlights when the bare lens clips at ISO 50.', p50: { nd: 'ND4', iso: [100, 500] } },
+    cloudy: { img: 'assets/overcast.jpg', alt: 'Flat green pasture under a heavy grey sky', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast daylight.', p50: { nd: 'ND4', iso: [50, 200] } },
+    hazy:   { img: 'assets/hazy.jpg',     alt: 'Ploughed soil beside a green field under a pale sky', nd: 'ND64', iso: [250, 400], wb: '5600K', note: 'On a tripod you can stack ND8 + ND4 instead, for 5 stops.', p50: { nd: 'ND64', iso: [500, 800] } },
+    midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.', p50: { nd: 'ND64', iso: [100, 320] } },
     trails: { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', iso: [50, 100], wb: '5600K', note: 'Tripod only: take the phone off the gimbal.', tripod: true }
   };
+  // 50p shoots at 1/100s, one stop less light than 25p at 1/50s: each light's p50 drops one ND
+  // where the kit allows (ND8 → ND4) and doubles the ISO where it doesn't.
   const SHUTTER = { 25: '1/50s', 50: '1/100s' };
 
   let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
@@ -36,8 +38,9 @@
 
   function compute() {
     const L = LIGHTS[light];
-    const out = { nd: L.nd, wb: L.wb, notes: [{ t: L.note, warn: !!L.tripod }] };
-    const [lo, hi] = L.iso;
+    const S = (fps === '50' && L.p50) || L;
+    const out = { nd: S.nd, wb: L.wb, notes: [{ t: L.note, warn: !!L.tripod }] };
+    const [lo, hi] = S.iso;
 
     if (L.tripod) {
       out.shutter = '1/2 – 2s'; out.shutterK = 'shutter, long exposure';
@@ -46,7 +49,7 @@
       const fpsNote = {
         // Europe: 50 Hz mains, so lights flicker at 100 Hz. 1/50s and 1/100s are both flicker-free.
         25: { t: 'Flicker-free under Europe\'s 50 Hz lights. The standard frame rate for Europe.' },
-        50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. 1/100s is 1 stop darker than the table: drop one ND or lift ISO. Conform to 25p in Resolve.', warn: true },
+        50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. The ND and ISO above already allow for the faster 1/100s shutter. Conform to 25p in Resolve.', warn: true },
       }[fps];
       if (fpsNote) out.notes.push(fpsNote);
     }
@@ -59,6 +62,7 @@
     const L = LIGHTS[light], o = compute();
     all('[data-light]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.light === light)));
     all('[data-fps]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fps === fps)));
+    $('fps-row').hidden = !!L.tripod; // Long exposures don't have a frame rate.
 
     $('o-nd').textContent = o.nd;
     $('o-nd').classList.toggle('long', o.nd.length > 4);
