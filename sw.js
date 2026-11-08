@@ -1,10 +1,10 @@
 // Offline cache so the card works in the field without signal.
 // Always checks the server first (bypassing the browser's HTTP cache), so updates show on the next load.
-const CACHE = 'field-card-v14';
+const CACHE = 'field-card-v15';
 const FILES = [
-  './', 'index.html', 'styles.css?v=14', 'app.js?v=14',
+  './', 'index.html', 'styles.css?v=15', 'app.js?v=15',
   'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
-  'assets/athmuqam-waterfall-long-exposure.jpg',
+  'assets/dusk.jpg',
   'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png'
 ];
 const warm = () => caches.open(CACHE).then(c => c.addAll(FILES.map(f => new Request(f, { cache: 'reload' }))));

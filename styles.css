@@ -135,6 +135,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .t2 { --tile: var(--muted); --fg: var(--ink); --fg2: var(--bg); }
 .t3 { --tile: var(--bg); --fg: var(--ink); --fg2: var(--surface-2); }
 .t4 { --tile: var(--accent); --fg: var(--bg); --fg2: var(--surface-2); }
+.t5 { --tile: var(--surface-2); --fg: var(--ink); --fg2: var(--bg); }
 .step-text strong, .deck strong { display: block; font: 700 var(--step-lead)/1.15 var(--display); letter-spacing: -0.02em; margin-bottom: 4px; }
 .step:has(input:checked) .step-text { color: var(--muted); }
 .step input {
@@ -199,4 +200,3 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
   .step-text { font-size: 0.9375rem; }
 }
 
-.row[hidden] { display: none; }

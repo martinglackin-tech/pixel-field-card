@@ -5,7 +5,7 @@ An interactive, phone-first field guide for shooting cinematic video on a **Pixe
 ## What's in it
 
 - **Expose** – pick the light and frame rate (25p, or 50p for slow motion); read the ND filter, shutter, ISO and white balance, with notes only when they apply.
-- **Rig** – the four-step rigging checklist, tickable (remembered on your phone).
+- **Rig** – the five-step rigging checklist, including the mic, tickable (remembered on your phone).
 - **Apps** – Blackmagic Camera and MotionCam Pro steps, filled in with the values from the dial.
 
 It installs as an app (Chrome ⋮ › Install app), works offline after the first visit, keeps the screen awake while open, and switches to a dark sage theme when the phone is in dark mode.

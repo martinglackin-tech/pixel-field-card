@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -34,7 +34,7 @@
   <section class="expose" id="expose" aria-labelledby="h-title">
     <h1 id="h-title" class="title reveal">Pixel 10 Pro XL field card</h1>
 
-    <div class="result reveal" aria-live="polite">
+    <div class="result" aria-live="polite">
       <div class="r-values">
         <p class="r-nd" id="o-nd">ND8</p>
         <div class="r-grid">
@@ -45,22 +45,22 @@
       </div>
       <div class="r-photo"><img id="o-img" src="assets/overcast.jpg" alt="Flat green pasture under a heavy grey sky" width="1400" height="1400"></div>
     </div>
-    <ul class="r-notes reveal" id="o-notes" role="list" aria-live="polite">
-      <li>Default walkaround filter for overcast daylight.</li>
+    <ul class="r-notes" id="o-notes" role="list" aria-live="polite">
+      <li>Default walkaround filter for overcast days and open shade. 6500K takes out their blue cast.</li>
     </ul>
 
     <div class="controls">
       <div class="row" role="group" aria-labelledby="g-light">
         <span class="row-label" id="g-light">Light</span>
         <div class="chips">
-          <button type="button" data-light="golden">Golden hour or shade</button>
-          <button type="button" data-light="cloudy" aria-pressed="true">Overcast</button>
+          <button type="button" data-light="golden">Golden hour</button>
+          <button type="button" data-light="cloudy" aria-pressed="true">Overcast or shade</button>
           <button type="button" data-light="hazy">Hazy sun</button>
           <button type="button" data-light="midday">Midday sun</button>
-          <button type="button" data-light="trails">Tripod trails</button>
+          <button type="button" data-light="dusk">Dusk or indoors</button>
         </div>
       </div>
-      <div class="row" id="fps-row" role="group" aria-labelledby="g-fps">
+      <div class="row" role="group" aria-labelledby="g-fps">
         <span class="row-label" id="g-fps">Frame rate</span>
         <div class="chips">
           <button type="button" data-fps="25" aria-pressed="true">25p</button>
@@ -114,6 +114,18 @@
           <input type="checkbox" data-step="filter">
         </label>
       </li>
+      <li class="step reveal t5">
+        <label>
+          <span class="thumb" aria-hidden="true"><svg viewBox="0 0 200 200">
+            <rect x="74" y="30" width="52" height="88" rx="26" fill="var(--fg)"/>
+            <path d="M58 98 a42 42 0 0 0 84 0" fill="none" stroke="var(--fg)" stroke-width="10" stroke-linecap="round"/>
+            <rect x="95" y="140" width="10" height="28" fill="var(--fg)"/><rect x="68" y="164" width="64" height="10" rx="5" fill="var(--fg)"/>
+            <path d="M84 50 h32 M84 66 h32 M84 82 h32" stroke="var(--fg2)" stroke-width="6" stroke-linecap="round"/>
+          </svg></span>
+          <span class="step-text"><strong>Mic on, windshield on</strong>Clip the transmitter a hand's width below the mouth, with the fur windshield on outdoors. Receiver in the USB-C port: it uses some of the 14 g headroom. Speech should peak around −12 dB, never touching 0.</span>
+          <input type="checkbox" data-step="mic">
+        </label>
+      </li>
       <li class="step reveal t4">
         <label>
           <span class="thumb" aria-hidden="true"><svg viewBox="0 0 240 200">
@@ -145,6 +157,7 @@
     </div>
 
     <ol class="deck" data-deck="bm">
+      <li><strong>Record 4K, H.265 10-bit</strong>Settings › Record: 3840 × 2160, H.265, 10-bit, at the dial's frame rate. Check the free space on the HUD before you start.</li>
       <li><strong>Shutter angle 180°</strong>Settings › Camera › Shutter Measurement › Shutter Angle. Tap Shutter on the HUD, choose 180° and tap the padlock until it turns blue.</li>
       <li><strong>Stabilisation off</strong>Settings › Camera › Stabilization › Off, so EIS doesn't fight the gimbal motors.</li>
       <li><strong>Zebras at 95%, ISO <span data-v="iso">50–200</span></strong>Monitor › Zebra 95%. Stripes on clouds or skin: step up an ND. Too dark: raise ISO towards the top of that range.</li>
@@ -152,19 +165,19 @@
     </ol>
 
     <ol class="deck" data-deck="mc">
-      <li><strong>Mode, histogram on, OIS off</strong>Mode selector (lower left) to Direct Log or RAW Video. Spanner: Histogram on, OIS off. For 25p, scroll to the yellow hidden frame rates in the FPS menu.</li>
+      <li><strong>Mode, histogram on, OIS off</strong>Mode selector (lower left) to Direct Log or RAW Video. RAW uses several gigabytes a minute: check free space first, and use Direct Log for long takes. Spanner: Histogram on, OIS off. For 25p, scroll to the yellow hidden frame rates in the FPS menu.</li>
       <li><strong>Direct preview with clipping</strong>Tap DP on the top bar, then the sun icon so blown highlights glow on screen.</li>
-      <li><strong>Shutter <span data-v="shutter">1/50s</span>, ISO <span data-v="iso">50–200</span></strong>Tap Exposure (S / ISO), set the shutter and long-press until it turns yellow. Start ISO low and raise it until the clipping circles read 0.00%.</li>
-      <li><strong>Lock WB <span data-v="wb">6500K</span> and focus</strong>Point at neutral ground and long-press WB until yellow. Focus with peaking on Medium and leave it in manual.</li>
+      <li><strong>Shutter <span data-v="shutter">1/50s</span>, ISO <span data-v="iso">50–200</span></strong>Tap Exposure (S / ISO), set the shutter and long-press until it turns yellow. Raise ISO until the clipping circles just start to show, then back off one step so they read 0.00%.</li>
+      <li><strong>Lock WB <span data-v="wb">6500K</span> and focus</strong>Set WB to this Kelvin rather than auto, then long-press WB until it turns yellow to lock it. Focus with peaking on Medium and leave it in manual.</li>
     </ol>
   </section>
 </main>
 
 <footer class="foot">
-  <p>Photographs: <a href="https://commons.wikimedia.org/w/index.php?curid=49151754">“Athmuqam waterfall (Long Exposure)”</a> by Sharjeel Ahmed Khan, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, via Wikimedia Commons. Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch and elizabeth lies, <a href="https://unsplash.com/license">Unsplash licence</a>.</p>
-  <p class="version">Version 14</p>
+  <p>Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch and elizabeth lies, <a href="https://unsplash.com/license">Unsplash licence</a>. Dusk vineyard by <a href="https://stocksnap.io/photo/sunset-dusk-FIPKLYO8KH">Karsten Würth</a>, CC0, via StockSnap.</p>
+  <p class="version">Version 15</p>
 </footer>
 
-<script src="app.js?v=14" defer></script>
+<script src="app.js?v=15" defer></script>
 </body>
 </html>

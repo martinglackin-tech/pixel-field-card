@@ -8,11 +8,12 @@
 
   /* ---------- Data from the field card ---------- */
   const LIGHTS = {
-    golden: { img: 'assets/golden.jpg',   alt: 'Wheat field under a cloudy evening sky', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: 'Protects sky highlights when the bare lens clips at ISO 50.', p50: { nd: 'ND4', iso: [100, 500] } },
-    cloudy: { img: 'assets/overcast.jpg', alt: 'Flat green pasture under a heavy grey sky', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast daylight.', p50: { nd: 'ND4', iso: [50, 200] } },
-    hazy:   { img: 'assets/hazy.jpg',     alt: 'Ploughed soil beside a green field under a pale sky', nd: 'ND64', iso: [250, 400], wb: '5600K', note: 'On a tripod you can stack ND8 + ND4 instead, for 5 stops.', p50: { nd: 'ND64', iso: [500, 800] } },
+    golden: { img: 'assets/golden.jpg',   alt: 'Wheat field under a cloudy evening sky', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: '5600K keeps the warm golden-hour colour. ND4 protects the sky when the bare lens clips at ISO 50.', p50: { nd: 'ND4', iso: [100, 500] } },
+    cloudy: { img: 'assets/overcast.jpg', alt: 'Flat green pasture under a heavy grey sky', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast days and open shade. 6500K takes out their blue cast.', p50: { nd: 'ND4', iso: [50, 200] } },
+    // Hazy sun is about a stop darker than midday sun: same ND64, ISO doubled.
+    hazy:   { img: 'assets/hazy.jpg',     alt: 'Ploughed soil beside a green field under a pale sky', nd: 'ND64', iso: [100, 320], wb: '5600K', note: 'About a stop darker than midday sun, so the same ND64 at double the ISO. On a tripod, stack ND8 + ND4 (5 stops) to drop back to ISO 50–160.', p50: { nd: 'ND64', iso: [200, 640] } },
     midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.', p50: { nd: 'ND64', iso: [100, 320] } },
-    trails: { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', iso: [50, 100], wb: '5600K', note: 'Tripod only: take the phone off the gimbal.', tripod: true }
+    dusk:   { img: 'assets/dusk.jpg',     alt: 'Rows of bare vines under a pink and purple dusk sky', nd: 'No ND', iso: [400, 1600], wb: '4000K', note: 'Take the filter off. Set WB to the main light: 3200K for warm bulbs, 4000K for most LEDs, 5600K by a window. Above ISO 800 the Pixel gets noisy: add light or move closer to it.', p50: { nd: 'No ND', iso: [800, 3200], note: '50p needs twice the light: in low light, stay on 25p if you can.' } }
   };
   // 50p shoots at 1/100s, one stop less light than 25p at 1/50s: each light's p50 drops one ND
   // where the kit allows (ND8 → ND4) and doubles the ISO where it doesn't.
@@ -39,12 +40,10 @@
   function compute() {
     const L = LIGHTS[light];
     const S = (fps === '50' && L.p50) || L;
-    const out = { nd: S.nd, wb: L.wb, notes: [{ t: L.note, warn: !!L.tripod }] };
+    const out = { nd: S.nd, wb: L.wb, notes: [{ t: L.note }] };
     const [lo, hi] = S.iso;
 
-    if (L.tripod) {
-      out.shutter = '1/2 – 2s'; out.shutterK = 'long exposure'; // Short enough to stay on one line, so the panel doesn't grow.
-    } else {
+    {
       out.shutter = SHUTTER[fps]; out.shutterK = 'shutter, 180°';
       const fpsNote = {
         // Europe: 50 Hz mains, so lights flicker at 100 Hz. 1/50s and 1/100s are both flicker-free.
@@ -52,6 +51,7 @@
         50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. The ND and ISO above already allow for the faster 1/100s shutter. Conform to 25p in Resolve.', warn: true },
       }[fps];
       if (fpsNote) out.notes.push(fpsNote);
+      if (S !== L && S.note) out.notes.push({ t: S.note, warn: true }); // Extra note for 50p only.
     }
 
     out.iso = lo === hi ? String(lo) : lo + '–' + hi;
@@ -62,7 +62,6 @@
     const L = LIGHTS[light], o = compute();
     all('[data-light]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.light === light)));
     all('[data-fps]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fps === fps)));
-    $('fps-row').hidden = !!L.tripod; // Long exposures don't have a frame rate.
 
     // Only values that change fade in; the rest stay still.
     const set = (id, v) => {
