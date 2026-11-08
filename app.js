@@ -8,12 +8,12 @@
 
   /* ---------- Data from the field card ---------- */
   const LIGHTS = {
-    golden: { img: 'assets/golden.jpg',   alt: 'Wheat field under a cloudy evening sky', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: '5600K keeps the warm golden-hour colour. ND4 protects the sky when the bare lens clips at ISO 50.', p50: { nd: 'ND4', iso: [100, 500] } },
-    cloudy: { img: 'assets/overcast.jpg', alt: 'Flat green pasture under a heavy grey sky', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast days and open shade. 6500K takes out their blue cast.', p50: { nd: 'ND4', iso: [50, 200] } },
+    golden: { img: 'assets/golden.jpg',   alt: 'Low sun reflected in a calm lagoon', nd: 'ND4',    iso: [50, 250], wb: '5600K', note: '5600K keeps the warm golden-hour colour. ND4 protects the sky when the bare lens clips at ISO 50.', p50: { nd: 'ND4', iso: [100, 500] } },
+    cloudy: { img: 'assets/overcast.jpg', alt: 'Green field and bare trees under heavy grey clouds', nd: 'ND8',  iso: [50, 200], wb: '6500K', note: 'Default walkaround filter for overcast days and open shade. 6500K takes out their blue cast.', p50: { nd: 'ND4', iso: [50, 200] } },
     // Hazy sun is about a stop darker than midday sun: same ND64, ISO doubled.
-    hazy:   { img: 'assets/hazy.jpg',     alt: 'Ploughed soil beside a green field under a pale sky', nd: 'ND64', iso: [100, 320], wb: '5600K', note: 'About a stop darker than midday sun, so the same ND64 at double the ISO. On a tripod, stack ND8 + ND4 (5 stops) to drop back to ISO 50–160.', p50: { nd: 'ND64', iso: [200, 640] } },
-    midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.', p50: { nd: 'ND64', iso: [100, 320] } },
-    dusk:   { img: 'assets/dusk.jpg',     alt: 'Rows of bare vines under a pink and purple dusk sky', nd: 'No ND', iso: [400, 1600], wb: '4000K', note: 'Take the filter off. Set WB to the main light: 3200K for warm bulbs, 4000K for most LEDs, 5600K by a window. Above ISO 800 the Pixel gets noisy: add light or move closer to it.', p50: { nd: 'No ND', iso: [800, 3200], note: '50p needs twice the light: in low light, stay on 25p if you can.' } }
+    hazy:   { img: 'assets/hazy.jpg',     alt: 'Sun rays breaking through hazy cloud over a field', nd: 'ND64', iso: [100, 320], wb: '5600K', note: 'About a stop darker than midday sun, so the same ND64 at double the ISO. On a tripod, stack ND8 + ND4 (5 stops) to drop back to ISO 50–160.', p50: { nd: 'ND64', iso: [200, 640] } },
+    midday: { img: 'assets/midday.jpg',   alt: 'Green valley and hills under a bright blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.', p50: { nd: 'ND64', iso: [100, 320] } },
+    dusk:   { img: 'assets/dusk.jpg',     alt: 'Pink and orange dusk clouds over the sea and a rocky shore', nd: 'No ND', iso: [400, 1600], wb: '4000K', note: 'Take the filter off. Set WB to the main light: 3200K for warm bulbs, 4000K for most LEDs, 5600K by a window. Above ISO 800 the Pixel gets noisy: add light or move closer to it.', p50: { nd: 'No ND', iso: [800, 3200], note: '50p needs twice the light: in low light, stay on 25p if you can.' } }
   };
   // 50p shoots at 1/100s, one stop less light than 25p at 1/50s: each light's p50 drops one ND
   // where the kit allows (ND8 → ND4) and doubles the ISO where it doesn't.
