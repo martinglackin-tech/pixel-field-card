@@ -14,7 +14,7 @@
     midday: { img: 'assets/midday.jpg',   alt: 'Pale track through flat fields under a deep blue sky', nd: 'ND64', iso: [50, 160], wb: '5600K', note: 'Essential for the f/1.68 main under open blue sky.' },
     trails: { img: 'assets/athmuqam-waterfall-long-exposure.jpg', alt: 'Waterfall blurred to silk by a long exposure', nd: 'ND1000', iso: [50, 100], wb: '5600K', note: 'Tripod only: take the phone off the gimbal.', tripod: true }
   };
-  const SHUTTER = { 24: '1/50s', 25: '1/50s', 30: '1/60s', 60: '1/120s' };
+  const SHUTTER = { 24: '1/50s', 25: '1/50s', 30: '1/60s', 50: '1/100s', 60: '1/120s' };
 
   let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
   if (!LIGHTS[light]) light = 'cloudy';
@@ -43,10 +43,14 @@
       out.shutter = '1/2 – 2s'; out.shutterK = 'shutter, long exposure';
     } else {
       out.shutter = SHUTTER[fps]; out.shutterK = 'shutter, 180°';
-      if (fps === '24') out.notes.push({ t: '1/48s is the exact 180°; 1/50s is fine if the app has no 1/48s.' });
-      if (fps === '25') out.notes.push({ t: '25p suits 50 Hz mains lighting: no indoor flicker.' });
-      if (fps === '30') out.notes.push({ t: '30p suits 60 Hz mains lighting: no indoor flicker.' });
-      if (fps === '60') out.notes.push({ t: 'At 1/120s you lose about 1⅓ stops: drop one ND grade or lift ISO towards 400. Conform to 24, 25 or 30p for slow motion.', warn: true });
+      const fpsNote = {
+        24: { t: 'Indoors: 1/50s is flicker-free under 50 Hz lights. Under 60 Hz lights, use 30p.' },
+        25: { t: 'Flicker-free under 50 Hz lights. Under 60 Hz lights, use 30p.' },
+        30: { t: 'Flicker-free under 60 Hz lights. Under 50 Hz lights, use 25p.' },
+        50: { t: 'Slow motion, flicker-free under 50 Hz lights. 1/100s is 1 stop darker than the table: drop one ND or lift ISO. Conform to 25p in Resolve.', warn: true },
+        60: { t: 'Slow motion, flicker-free under 60 Hz lights (under 50 Hz lights use 50p). 1/120s is about 1¼ stops darker: drop one ND or lift ISO. Conform to 24, 25 or 30p.', warn: true }
+      }[fps];
+      if (fpsNote) out.notes.push(fpsNote);
     }
 
     out.iso = lo === hi ? String(lo) : lo + '–' + hi;
@@ -121,6 +125,15 @@
     targets.forEach(t => io.observe(t));
   }
 
+  /* keep the screen awake while the card is open */
+  let wake = null;
+  async function stayAwake() {
+    if (!('wakeLock' in navigator) || document.visibilityState !== 'visible') return;
+    try { wake = await navigator.wakeLock.request('screen'); } catch {}
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') stayAwake(); });
+  stayAwake();
+
   /* offline: cache the card for use without signal */
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     // When a newer version takes over, reload once so it shows straight away.
@@ -130,6 +143,9 @@
       if (!hadController || reloaded) return;
       reloaded = true; location.reload();
     });
-    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => {}));
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(r => r.update()).catch(() => {});
+      if (navigator.onLine) navigator.serviceWorker.ready.then(r => r.active && r.active.postMessage('warm'));
+    });
   }
 })();

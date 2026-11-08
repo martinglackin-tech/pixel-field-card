@@ -5,11 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pixel Field Card</title>
 <meta name="description" content="Expose, rig and lock a Pixel 10 Pro XL on the OM 7P gimbal with K&amp;F 67mm ND filters.">
-<meta name="theme-color" content="#e4e7e3">
+<meta name="theme-color" content="#e4e7e3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141c17" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -61,6 +66,7 @@
           <button type="button" data-fps="24">24p</button>
           <button type="button" data-fps="25" aria-pressed="true">25p</button>
           <button type="button" data-fps="30">30p</button>
+          <button type="button" data-fps="50">50p</button>
           <button type="button" data-fps="60">60p</button>
         </div>
       </div>
@@ -159,9 +165,9 @@
 
 <footer class="foot">
   <p>Photographs: <a href="https://commons.wikimedia.org/w/index.php?curid=49151754">“Athmuqam waterfall (Long Exposure)”</a> by Sharjeel Ahmed Khan, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, via Wikimedia Commons. Field photographs by Cornelia Büchse, Crucifix Jean-Luc, Martin Dörsch and elizabeth lies, <a href="https://unsplash.com/license">Unsplash licence</a>.</p>
-  <p class="version">Version 8</p>
+  <p class="version">Version 9</p>
 </footer>
 
-<script src="app.js?v=8" defer></script>
+<script src="app.js?v=9" defer></script>
 </body>
 </html>

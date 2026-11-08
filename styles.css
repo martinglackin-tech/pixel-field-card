@@ -8,6 +8,7 @@
   --accent: #9fb79c;
   --accent-strong: #8aa687;
   --accent-ink: #1b2620;
+  --well: #aeb8ad;
 
   --display: "League Spartan", "Futura", "Avenir Next", system-ui, sans-serif;
   --text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -21,6 +22,24 @@
   --margin: clamp(16px, 2.4vw, 32px);
   --gap-section: clamp(88px, 10vw, 160px);
   --ease-out: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Dusk and night: deep sage, so the screen doesn't glare when your eyes have adjusted */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141c17;
+    --surface: #1d2721;
+    --surface-2: #27332b;
+    --ink: #dfe6df;
+    --muted: #9fb0a4;
+    --accent: #8faa8c;
+    --accent-strong: #a6bea3;
+    --accent-ink: #111813;
+    --well: #3a4a3f;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .t2 { --fg: var(--bg); --fg2: var(--ink); }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -119,7 +138,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .step:has(input:checked) .step-text { color: var(--muted); }
 .step input {
   appearance: none; -webkit-appearance: none; margin: 0;
-  width: 32px; height: 32px; border-radius: 50%; background: #aeb8ad;
+  width: 32px; height: 32px; border-radius: 50%; background: var(--well);
   display: grid; place-items: center; cursor: pointer;
   transition: background-color 200ms ease, transform 140ms var(--ease-out);
 }
@@ -130,7 +149,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 
 .deck li { padding: 18px 20px; background: var(--surface); }
 .deck li > :not(strong) { display: inline; }
-[data-v] { background: var(--accent); padding: 0 .3em; border-radius: 999px; white-space: nowrap; }
+[data-v] { background: var(--accent); color: var(--accent-ink); padding: 0 .3em; border-radius: 999px; white-space: nowrap; }
 .js .deck[hidden], .js [data-deck-note][hidden] { display: none; }
 .deck + .deck { margin-top: 40px; }
 .js .deck + .deck { margin-top: 0; }

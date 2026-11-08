@@ -4,11 +4,13 @@ An interactive, phone-first field guide for shooting cinematic video on a **Pixe
 
 ## What's in it
 
-- **Expose** – pick the light, lens (1x main or 0.5x ultra-wide) and frame rate; read the ND filter, shutter, ISO and white balance, with notes only when they apply.
+- **Expose** – pick the light and frame rate (24, 25, 30, 50 or 60p); read the ND filter, shutter, ISO and white balance, with notes only when they apply.
 - **Rig** – the four-step rigging checklist, tickable (remembered on your phone).
 - **Apps** – Blackmagic Camera and MotionCam Pro steps, filled in with the values from the dial.
 
-It works offline after the first visit (service worker), so it still opens with no signal. Add it to your home screen from Chrome for one-tap access.
+It installs as an app (Chrome ⋮ › Install app), works offline after the first visit, keeps the screen awake while open, and switches to a dark sage theme when the phone is in dark mode.
+
+The service worker only clears caches whose names start with `field-card-`, because other apps on this GitHub Pages site share the same storage. It re-saves its offline copy on each online visit in case another app clears it.
 
 ## Run locally
 

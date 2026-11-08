@@ -1,18 +1,21 @@
 // Offline cache so the card works in the field without signal.
 // Always checks the server first (bypassing the browser's HTTP cache), so updates show on the next load.
-const CACHE = 'field-card-v8';
+const CACHE = 'field-card-v9';
 const FILES = [
-  './', 'index.html', 'styles.css?v=8', 'app.js?v=8',
+  './', 'index.html', 'styles.css?v=9', 'app.js?v=9',
   'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
-  'assets/athmuqam-waterfall-long-exposure.jpg'
+  'assets/athmuqam-waterfall-long-exposure.jpg',
+  'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png'
 ];
-self.addEventListener('install', e => e.waitUntil(
-  caches.open(CACHE)
-    .then(c => c.addAll(FILES.map(f => new Request(f, { cache: 'reload' }))))
-    .then(() => self.skipWaiting())
-));
+const warm = () => caches.open(CACHE).then(c => c.addAll(FILES.map(f => new Request(f, { cache: 'reload' }))));
+self.addEventListener('install', e => e.waitUntil(warm().then(() => self.skipWaiting())));
+// Other apps on this site clear caches they don't recognise, so the page asks us to re-save on each online visit.
+self.addEventListener('message', e => {
+  if (e.data === 'warm') e.waitUntil(caches.has(CACHE).then(has => has ? caches.open(CACHE).then(c => c.keys()).then(k => k.length < FILES.length ? warm() : null) : warm()).catch(() => {}));
+});
 self.addEventListener('activate', e => e.waitUntil(
-  caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
+  // Only clear this app's old caches: other apps on this GitHub Pages site share the same storage.
+  caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('field-card-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
 ));
 self.addEventListener('fetch', e => {
   const req = e.request;
