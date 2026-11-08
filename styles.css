@@ -149,7 +149,11 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 
 .deck li { padding: 18px 20px; background: var(--surface); }
 .deck li > :not(strong) { display: inline; }
-[data-v] { background: var(--accent); color: var(--accent-ink); padding: 0 .3em; border-radius: 999px; white-space: nowrap; }
+/* League Spartan's line box has ~0.2em of extra space below the baseline, so the value sat high in its pill.
+   Trim the box to cap height and baseline, then pad evenly. */
+[data-v] { display: inline-block; line-height: 1; background: var(--accent); color: var(--accent-ink); padding: .2em .32em; border-radius: 999px; white-space: nowrap;
+  text-box: trim-both cap alphabetic; }
+@supports not (text-box: trim-both cap alphabetic) { [data-v] { padding: .29em .32em .1em; } }
 .js .deck[hidden], .js [data-deck-note][hidden] { display: none; }
 .deck + .deck { margin-top: 40px; }
 .js .deck + .deck { margin-top: 0; }
