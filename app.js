@@ -120,17 +120,6 @@
   $('pre-reset').addEventListener('click', () => { pre.forEach(b => { b.checked = false; preDone[b.dataset.pre] = false; }); store.set('pre', preDone); preCount(); });
   preCount();
 
-  /* ---------- App switch ---------- */
-  let app = store.get('app', 'bm');
-  if (!['bm', 'mc'].includes(app)) app = 'bm';
-  function showApp() {
-    all('[data-app]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.app === app)));
-    all('[data-deck]').forEach(d => { d.hidden = d.dataset.deck !== app; });
-    all('[data-deck-note]').forEach(d => { d.hidden = d.dataset.deckNote !== app; });
-  }
-  all('[data-app]').forEach(b => b.addEventListener('click', () => { app = b.dataset.app; store.set('app', app); showApp(); }));
-  showApp();
-
   /* ---------- Entrances ---------- */
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   all('.steps > .reveal').forEach((el, i) => el.style.setProperty('--d', i));
