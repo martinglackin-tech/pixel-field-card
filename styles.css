@@ -9,7 +9,7 @@
   --ring-edge: #474c4f;  /* knurling and inner lip */
   --engrave: #eef0ec;    /* paint-filled engraving, same in both themes */
   --rim: #1b1d1f;        /* outlines of small discs: checkboxes, bullets, progress */
-  --accent: #186a57;     /* multi-coating green: index dots, "On the lens" (a shade darker than #1c7560 so the small label passes 4.5:1 on --surface) */
+  --accent: #186a57;     /* multi-coating green: the index dots on the ring */
   --warn: #f2c260;       /* caution step, 50p warning bullets */
   --warn-ink: #2b1d00;
   --glass: 22 24 26;     /* rgb triplet for smoked glass, used with an alpha */
@@ -138,19 +138,6 @@ h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-
 .r-notes li.warn { font-weight: 600; }
 .r-notes li.warn::before { background: var(--warn); }
 
-/* The kit: four filters at their real densities. A readout, not a control. */
-.kit { display: flex; flex-direction: column; gap: 12px; }
-.kit-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 460px; }
-.kit-list li { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; padding: 10px; border-radius: 6px; min-width: 0; }
-.kit-list li[aria-current="true"] { background: var(--surface); }
-.kit-disc { width: 44px; height: 44px; border-radius: 50%; border: 6px solid var(--ring); box-shadow: 0 0 0 1px var(--ring-edge); margin-bottom: 8px;
-  background: linear-gradient(rgb(var(--glass) / var(--t)), rgb(var(--glass) / var(--t))), linear-gradient(160deg, #e9f0f6 20%, #a9bda6 80%); }
-.kit-list b { font: 700 15px/1.2 var(--display); font-stretch: 112%; white-space: nowrap; }
-.kit-list small { font: 500 12px/1.35 var(--mono); color: var(--muted); }
-.kit-list li[aria-current="true"] small { color: var(--ink); }
-.kit-list em { display: none; font: 600 10px/1 var(--display); font-stretch: 125%; font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
-.kit-list li[aria-current="true"] em { display: block; }
-
 /* RIG, APP, PRE-FLIGHT share a frame: heading at the side, content on the right */
 .rig, .apps, .preflight {
   margin-top: var(--gap-section); padding: 0 var(--margin);
@@ -231,7 +218,7 @@ h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-
 @media (max-width: 700px) {
   .steps, .deck { grid-template-columns: 1fr; }
 }
-/* phone: lens first and full-bleed, then readouts, chips, notes, kit */
+/* phone: lens first and full-bleed, then readouts, chips, notes */
 @media (max-width: 760px) {
   .hero, .under { grid-template-columns: minmax(0, 1fr); }
   .scene { order: -1; }
@@ -243,7 +230,6 @@ h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-
   .under { padding-top: 24px; gap: 28px; }
   .controls { padding: 0 var(--margin); }
   .chips button { padding: 0 16px; }
-  .kit-list li { padding: 8px 6px; }
   .step label { grid-template-columns: 60px 1fr 32px; gap: 14px; padding: 12px 14px 12px 12px; }
   .checks .step label { grid-template-columns: 1fr 32px; }
   .thumb { width: 60px; height: 60px; padding: 6px; }

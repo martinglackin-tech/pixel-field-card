@@ -18,7 +18,7 @@
   // 50p shoots at 1/100s, one stop less light than 25p at 1/50s: each light's p50 drops one ND
   // where the kit allows (ND8 → ND4) and doubles the ISO where it doesn't.
   const SHUTTER = { 25: '1/50s', 50: '1/100s' };
-  // Each filter: stops, how much light it passes, and how bright the bare-lens photo looks outside the ring.
+  // Each filter: stops, how much light it lets through, and how bright the bare-lens photo looks outside the ring.
   const ND = {
     'ND4':   { stops: 2, pct: '25%',   over: 1.6 },
     'ND8':   { stops: 3, pct: '12.5%', over: 2.1 },
@@ -97,12 +97,11 @@
     const m = ND[o.nd], none = o.nd === 'No ND';
     scene.dataset.nd = none ? 'none' : 'on';
     scene.style.setProperty('--over', m.over);
-    set('o-stops', none ? 'No filter · all the light reaches the sensor' : m.stops + ' stops · passes ' + m.pct + ' of the light');
+    set('o-stops', none ? 'No filter · all the light reaches the sensor' : m.stops + ' stops · lets ' + m.pct + ' of the light through');
     $('o-rim-top').textContent = o.nd + ' · ' + m.stops + ' STOPS · 67mm';
     $('o-rim-bottom').textContent = o.shutter + ' · ISO ' + o.iso + ' · ' + o.wb;
     $('o-cap-a').textContent = none ? 'Filter off' : 'Bare lens: highlights clip';
     $('o-cap-b').textContent = none ? '' : 'Through ' + o.nd;
-    all('.kit-list li').forEach(li => { if (li.dataset.nd === o.nd) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current'); });
     // Thread the ring on when the filter changes.
     if (animate && shownND !== null && shownND !== o.nd && !none) {
       const ring = scene.querySelector('.scene-ring');
