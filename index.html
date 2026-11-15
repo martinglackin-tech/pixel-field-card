@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=18">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -25,6 +25,7 @@
     <a class="link" href="#expose">Expose</a>
     <a class="link" href="#rig">Rig</a>
     <a class="link" href="#apps">Apps</a>
+    <a class="link" href="#check">Check</a>
   </nav>
 </header>
 
@@ -100,7 +101,7 @@
             <circle cx="66" cy="105" r="10" fill="var(--fg2)"/><circle cx="94" cy="105" r="10" fill="var(--fg2)"/>
             <circle cx="150" cy="105" r="10" fill="var(--fg2)"/><circle cx="172" cy="105" r="6" fill="var(--fg2)"/>
           </svg></span>
-          <span class="step-text"><strong>Clear the laser AF</strong>Stop the 67mm ring just left of the laser AF dot on the right of the visor.</span>
+          <span class="step-text"><strong>Clear the laser AF</strong>Stop the 67mm ring just left of the laser AF dot on the right of the visor. If the ring or the ND glass covers its window, the infrared laser bounces back into the lens as a purple or magenta haze. <em>Field fix:</em> a small dot of black gaffer tape over the laser emitter. Autofocus falls back to phase detection.</span>
           <input type="checkbox" data-step="laser">
         </label>
       </li>
@@ -167,19 +168,39 @@
 
     <ol class="deck" data-deck="mc">
       <li><strong>Mode, 4K, OIS off</strong>Tap the mode and choose Direct Log or RAW Video. In Capture Configuration, set Capture Resolution to 3840 × 2160. Tap the frame rate and pick the dial's 25 or 50: if it isn't under Supported, try it under Unsupported. In Lens &amp; Viewfinder, turn OIS off so it doesn't fight the gimbal.</li>
+      <li><strong>Sensor <span class="tag">RAW 12</span> on the 1x main</strong>Sensor Configuration: RAW 12. It turns on the main sensor's dual conversion gain (DCG): multi-gain readout for the most dynamic range and the cleanest shadows.</li>
+      <li><strong>Direct Log <span class="tag">S-Log3</span> <span class="tag">10-bit HEVC</span></strong>Encode 10-bit HEVC at about 100 Mbps. Colour space Sony S-Gamut3.Cine, transfer function Sony S-Log3, so Final Cut Pro normalises it in one click with its built-in Camera LUT.</li>
+      <li class="caution"><strong>Real-time processing off</strong>In the Direct Log settings, turn Real-Time Sharpness, Detail and Real-Time Highlight Reconstruction <b>off</b>. Running them while recording 10-bit causes dropped frames, buffer stalls and crashes.</li>
       <li><strong>Storage and mic</strong>RAW Video uses several gigabytes a minute: use Direct Log for long takes, and keep storage below 85% (the counter turns red at about 76%). Capture Configuration › Audio Settings: pick the wireless receiver. Bluetooth mics don't work, only ones plugged in. Turn on Audio Meter in General Settings.</li>
-      <li><strong>Direct Preview with clipping</strong>Hold Vol + to turn on Direct Preview, then press Vol + again for the Sensor Clipping overlay (sun icon), so blown highlights show on screen. Tap the histogram toggle until it's yellow.</li>
+      <li><strong>Direct Preview with clipping</strong>Hold Vol + to turn on Direct Preview, then press Vol + again for the Sensor Clipping overlay (sun icon), so blown highlights show on screen. Tap the histogram toggle until it's yellow. Direct Log writes straight to compressed video, so any clipping is baked in: watch the RAW histogram and keep the overlay at 0.00%.</li>
       <li><strong>Shutter <span data-v="shutter">1/50s</span>, ISO <span data-v="iso">50–200</span></strong>Tap the shutter value, slide Shutter Angle (bottom left) to 180°, then hold the value until it turns yellow to lock it. Tap ISO and raise it until the clipping traffic lights start to fill, then back off one step so clipping reads 0.00%. Hold ISO to lock it.</li>
       <li><strong>Lock WB <span data-v="wb">6500K</span> and focus</strong>Tap the temperature, set this Kelvin rather than auto, then hold it until it turns yellow to lock it. Direct Log bakes it in; in RAW it can still be changed later. Tap Focus, use the green peaking lines, then hold Focus to lock it.</li>
     </ol>
+  </section>
+
+  <!-- PRE-FLIGHT -->
+  <section class="preflight" id="check" aria-labelledby="h-check">
+    <div class="side reveal">
+      <h2 id="h-check">Pre-flight</h2>
+      <p class="side-note">MotionCam Direct Log, before each take. Tap each line as you check it.</p>
+      <p class="rig-status"><span id="pre-count">0 of 6</span> checked · <button type="button" class="text-button" id="pre-reset">Clear</button></p>
+    </div>
+    <ul class="steps checks" role="list">
+      <li class="step reveal"><label><span class="step-text"><strong>Sensor mode</strong>RAW 12, DCG on the 1x main</span><input type="checkbox" data-pre="sensor"></label></li>
+      <li class="step reveal"><label><span class="step-text"><strong>Profile</strong>S-Gamut3.Cine / S-Log3, 10-bit HEVC, about 100 Mbps</span><input type="checkbox" data-pre="profile"></label></li>
+      <li class="step reveal"><label><span class="step-text"><strong>Processing</strong>Real-time Sharpness, Detail and Highlight Reconstruction off</span><input type="checkbox" data-pre="processing"></label></li>
+      <li class="step reveal"><label><span class="step-text"><strong>Stabilisation</strong>OIS off: the gimbal stabilises</span><input type="checkbox" data-pre="ois"></label></li>
+      <li class="step reveal"><label><span class="step-text"><strong>Laser AF</strong>Clear of the 67mm ring, or masked with black tape</span><input type="checkbox" data-pre="laser"></label></li>
+      <li class="step reveal"><label><span class="step-text"><strong>Shutter and ND</strong>180°: <span data-v="shutter">1/50s</span> at the dial's frame rate. Step up an ND until clipping reads 0.00%.</span><input type="checkbox" data-pre="nd"></label></li>
+    </ul>
   </section>
 </main>
 
 <footer class="foot">
   <p>Photographs from my own library.</p>
-  <p class="version">Version 17</p>
+  <p class="version">Version 18</p>
 </footer>
 
-<script src="app.js?v=17" defer></script>
+<script src="app.js?v=18" defer></script>
 </body>
 </html>

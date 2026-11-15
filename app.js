@@ -48,7 +48,7 @@
       const fpsNote = {
         // Europe: 50 Hz mains, so lights flicker at 100 Hz. 1/50s and 1/100s are both flicker-free.
         25: { t: 'Flicker-free under Europe\'s 50 Hz lights. The standard frame rate for Europe.' },
-        50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. The ND and ISO above already allow for the faster 1/100s shutter. Conform to 25p in Resolve.', warn: true },
+        50: { t: 'Slow motion, flicker-free under Europe\'s 50 Hz lights. The ND and ISO above already allow for the faster 1/100s shutter. Twice the sensor data: expect the phone to heat faster and throttle on hot days. Conform 50p to 25p in Final Cut Pro for 50% slow motion.', warn: true },
       }[fps];
       if (fpsNote) out.notes.push(fpsNote);
       if (S !== L && S.note) out.notes.push({ t: S.note, warn: true }); // Extra note for 50p only.
@@ -108,6 +108,17 @@
   });
   $('rig-reset').addEventListener('click', () => { boxes.forEach(b => { b.checked = false; done[b.dataset.step] = false; }); store.set('rig', done); count(); });
   count();
+
+  /* ---------- Pre-flight checklist ---------- */
+  const pre = [...all('[data-pre]')];
+  const preDone = store.get('pre', {});
+  const preCount = () => { $('pre-count').textContent = pre.filter(b => b.checked).length + ' of ' + pre.length; };
+  pre.forEach(b => {
+    b.checked = !!preDone[b.dataset.pre];
+    b.addEventListener('change', () => { preDone[b.dataset.pre] = b.checked; store.set('pre', preDone); preCount(); });
+  });
+  $('pre-reset').addEventListener('click', () => { pre.forEach(b => { b.checked = false; preDone[b.dataset.pre] = false; }); store.set('pre', preDone); preCount(); });
+  preCount();
 
   /* ---------- App switch ---------- */
   let app = store.get('app', 'bm');

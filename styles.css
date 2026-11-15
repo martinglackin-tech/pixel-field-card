@@ -112,7 +112,7 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .row-label { font-size: var(--step-small); font-weight: 600; color: var(--muted); }
 
 /* RIG + APPS share a frame: heading at the side, content on the right */
-.rig, .apps {
+.rig, .apps, .preflight {
   margin-top: var(--gap-section); padding: 0 var(--margin);
   display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 16px;
 }
@@ -150,6 +150,11 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .step label:active input { transform: scale(.9); }
 
 .deck li { padding: 18px 20px; background: var(--surface); }
+/* A step that can break the recording stands out in the accent colour. */
+.deck li.caution { background: var(--accent); color: var(--accent-ink); }
+.tag { display: inline-block; font: 600 var(--step-small)/1 var(--text); letter-spacing: 0; vertical-align: .2em; padding: .35em .6em; border-radius: 999px; background: var(--surface-2); color: var(--ink); }
+.checks .step label { grid-template-columns: 1fr 32px; }
+.step-text em { font-style: normal; font-weight: 600; }
 .deck li > :not(strong) { display: inline; }
 /* League Spartan's line box has ~0.2em of extra space below the baseline, so the value sat high in its pill.
    Trim the box to cap height and baseline, then pad evenly. */
