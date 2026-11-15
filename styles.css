@@ -56,7 +56,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 strong { font-weight: 600; }
 
 /* Display: wide engraved lettering */
-h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font: 800 clamp(2rem, 1.2rem + 2.4vw, 3.25rem)/0.95 var(--display); font-stretch: 125%; letter-spacing: -0.03em; text-wrap: balance; }
 /* Small labels: wide caps, like markings on a lens barrel */
 .eyebrow, .row-label, .scene-cap {
   font: 600 12px/1 var(--display); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
@@ -140,8 +140,12 @@ h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-
 
 /* RIG, APP, PRE-FLIGHT share a frame: heading at the side, content on the right */
 .rig, .apps, .preflight {
-  margin-top: var(--gap-section); padding: 0 var(--margin);
+  margin-top: clamp(64px, 8vw, 112px); padding: 0 var(--margin);
   display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 16px;
+}
+/* Each section opens with a full-width rule in the ring's colour, so Rig, MotionCam and Pre-flight read as separate cards. */
+.rig::before, .apps::before, .preflight::before {
+  content: ""; grid-column: 1 / -1; height: 4px; background: var(--ink); margin-bottom: clamp(28px, 4vw, 48px);
 }
 .side { grid-column: 1 / span 4; align-self: start; position: sticky; top: 80px; }
 .side-note { margin-top: 16px; max-width: 30ch; }
