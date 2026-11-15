@@ -18,12 +18,20 @@
   // 50p shoots at 1/100s, one stop less light than 25p at 1/50s: each light's p50 drops one ND
   // where the kit allows (ND8 → ND4) and doubles the ISO where it doesn't.
   const SHUTTER = { 25: '1/50s', 50: '1/100s' };
+  // Each filter: stops, how much light it passes, and how bright the bare-lens photo looks outside the ring.
+  const ND = {
+    'ND4':   { stops: 2, pct: '25%',   over: 1.6 },
+    'ND8':   { stops: 3, pct: '12.5%', over: 2.1 },
+    'ND64':  { stops: 6, pct: '1.6%',  over: 3 },
+    'No ND': { stops: 0, pct: '100%',  over: 1 }
+  };
 
   let light = store.get('light', 'cloudy'), fps = String(store.get('fps', '25'));
   if (!LIGHTS[light]) light = 'cloudy';
   if (!SHUTTER[fps]) fps = '25';
 
-  const img = $('o-img');
+  const img = $('o-img'), raw = $('o-img-raw'), scene = $('o-scene');
+  let shownND = null;
 
   // Shrink the filter name until it fits its column, whatever the screen or text size.
   function fitND() {
@@ -68,7 +76,7 @@
       const e = $(id);
       if (e.textContent === v) return;
       e.textContent = v;
-      if (animate && e.matches('.r-nd, .r-v')) { e.classList.remove('flash'); void e.offsetWidth; e.classList.add('flash'); }
+      if (animate && e.matches('.r-nd, .r-v, .r-stops')) { e.classList.remove('flash'); void e.offsetWidth; e.classList.add('flash'); }
     };
     set('o-nd', o.nd);
     $('o-nd').classList.toggle('long', o.nd.length > 4);
@@ -85,11 +93,28 @@
     all('[data-v="wb"]').forEach(e => e.textContent = o.wb);
     all('[data-v="shutter"]').forEach(e => e.textContent = o.shutter);
 
+    // The lens: the ring carries the filter and settings; outside it, the bare lens overexposes by the filter's stops.
+    const m = ND[o.nd], none = o.nd === 'No ND';
+    scene.dataset.nd = none ? 'none' : 'on';
+    scene.style.setProperty('--over', m.over);
+    set('o-stops', none ? 'No filter · all the light reaches the sensor' : m.stops + ' stops · passes ' + m.pct + ' of the light');
+    $('o-rim-top').textContent = o.nd + ' · ' + m.stops + ' STOPS · 67mm';
+    $('o-rim-bottom').textContent = o.shutter + ' · ISO ' + o.iso + ' · ' + o.wb;
+    $('o-cap-a').textContent = none ? 'Filter off' : 'Bare lens: highlights clip';
+    $('o-cap-b').textContent = none ? '' : 'Through ' + o.nd;
+    all('.kit-list li').forEach(li => { if (li.dataset.nd === o.nd) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current'); });
+    // Thread the ring on when the filter changes.
+    if (animate && shownND !== null && shownND !== o.nd && !none) {
+      const ring = scene.querySelector('.scene-ring');
+      ring.classList.remove('turn'); void ring.getBoundingClientRect(); ring.classList.add('turn');
+    }
+    shownND = o.nd;
+
     if (img.getAttribute('src') !== L.img) {
       if (animate) {
-        img.classList.add('swap');
-        setTimeout(() => { img.onload = () => img.classList.remove('swap'); img.src = L.img; img.alt = L.alt; }, 200);
-      } else { img.src = L.img; img.alt = L.alt; }
+        scene.classList.add('swap');
+        setTimeout(() => { img.onload = () => scene.classList.remove('swap'); img.src = L.img; raw.src = L.img; img.alt = L.alt; }, 200);
+      } else { img.src = L.img; raw.src = L.img; img.alt = L.alt; }
     }
   }
 
@@ -101,7 +126,9 @@
   /* ---------- Rig checklist ---------- */
   const boxes = [...all('[data-step]')];
   const done = store.get('rig', {});
-  const count = () => { $('rig-count').textContent = boxes.filter(b => b.checked).length + ' of ' + boxes.length; };
+  // One small ring per item, filled when ticked; the text count stays the accessible value.
+  const rings = (id, list) => { $(id).innerHTML = list.map(b => b.checked ? '<i class="on"></i>' : '<i></i>').join(''); };
+  const count = () => { $('rig-count').textContent = boxes.filter(b => b.checked).length + ' of ' + boxes.length; rings('rig-prog', boxes); };
   boxes.forEach(b => {
     b.checked = !!done[b.dataset.step];
     b.addEventListener('change', () => { done[b.dataset.step] = b.checked; store.set('rig', done); count(); });
@@ -112,25 +139,13 @@
   /* ---------- Pre-flight checklist ---------- */
   const pre = [...all('[data-pre]')];
   const preDone = store.get('pre', {});
-  const preCount = () => { $('pre-count').textContent = pre.filter(b => b.checked).length + ' of ' + pre.length; };
+  const preCount = () => { $('pre-count').textContent = pre.filter(b => b.checked).length + ' of ' + pre.length; rings('pre-prog', pre); };
   pre.forEach(b => {
     b.checked = !!preDone[b.dataset.pre];
     b.addEventListener('change', () => { preDone[b.dataset.pre] = b.checked; store.set('pre', preDone); preCount(); });
   });
   $('pre-reset').addEventListener('click', () => { pre.forEach(b => { b.checked = false; preDone[b.dataset.pre] = false; }); store.set('pre', preDone); preCount(); });
   preCount();
-
-  /* ---------- Entrances ---------- */
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  all('.steps > .reveal').forEach((el, i) => el.style.setProperty('--d', i));
-  all('.deck > li, .controls > .row').forEach(el => el.classList.add('reveal'));
-  all('.deck, .controls').forEach(g => [...g.children].forEach((el, i) => el.style.setProperty('--d', i)));
-  const targets = all('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) targets.forEach(t => t.classList.add('is-in'));
-  else {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px 10% 0px' });
-    targets.forEach(t => io.observe(t));
-  }
 
   /* keep the screen awake while the card is open */
   let wake = null;

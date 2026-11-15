@@ -1,44 +1,41 @@
 :root {
-  /* Pixel 10 Pro XL in sage green and silver */
-  --bg: #e4e7e3;
-  --surface: #d6dbd5;
-  --surface-2: #c7cfc6;
-  --ink: #1b2620;
-  --muted: #4c5b52;
-  --accent: #9fb79c;
-  --accent-strong: #8aa687;
-  --accent-ink: #1b2620;
-  --well: #aeb8ad;
+  /* Neutral density: brushed aluminium, anodised ring, smoked glass */
+  --bg: #e8e9e6;         /* brushed aluminium */
+  --surface: #dcdeda;
+  --surface-2: #cbcfca;
+  --ink: #16181a;
+  --muted: #535956;
+  --ring: #1b1d1f;       /* anodised filter ring, hero only */
+  --ring-edge: #474c4f;  /* knurling and inner lip */
+  --engrave: #eef0ec;    /* paint-filled engraving, same in both themes */
+  --rim: #1b1d1f;        /* outlines of small discs: checkboxes, bullets, progress */
+  --accent: #186a57;     /* multi-coating green: index dots, "On the lens" (a shade darker than #1c7560 so the small label passes 4.5:1 on --surface) */
+  --warn: #f2c260;       /* caution step, 50p warning bullets */
+  --warn-ink: #2b1d00;
+  --glass: 22 24 26;     /* rgb triplet for smoked glass, used with an alpha */
 
-  --display: "League Spartan", "Futura", "Avenir Next", system-ui, sans-serif;
-  --text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --text: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
 
   --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-title: clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem);
   --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-  --step-display: clamp(5.5rem, 3rem + 10vw, 10rem);
 
   --margin: clamp(16px, 2.4vw, 32px);
   --gap-section: clamp(88px, 10vw, 160px);
   --ease-out: cubic-bezier(.2, .7, .2, 1);
 }
 
-/* Dusk and night: deep sage, so the screen doesn't glare when your eyes have adjusted */
+/* Dusk and night: dark metal, so the screen doesn't glare when your eyes have adjusted */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141c17;
-    --surface: #1d2721;
-    --surface-2: #27332b;
-    --ink: #dfe6df;
-    --muted: #9fb0a4;
-    --accent: #8faa8c;
-    --accent-strong: #a6bea3;
-    --accent-ink: #111813;
-    --well: #3a4a3f;
+    --bg: #111314; --surface: #1b1e1f; --surface-2: #282c2d;
+    --ink: #e7e9e5; --muted: #9ca39f;
+    --ring: #232628; --ring-edge: #6b7275; --rim: #8b938f;
+    --accent: #62c7a8; --warn: #e3ab45; --warn-ink: #1f1500; --glass: 10 11 12;
   }
-}
-@media (prefers-color-scheme: dark) {
   .t2 { --fg: var(--bg); --fg2: var(--ink); }
 }
 
@@ -58,7 +55,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 ::selection { background: var(--ink); color: var(--bg); }
 strong { font-weight: 600; }
 
-h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; text-wrap: balance; font-size: var(--step-head); }
+/* Display: wide engraved lettering */
+h2 { font: 800 var(--step-head)/0.95 var(--display); font-stretch: 125%; letter-spacing: -0.03em; text-wrap: balance; }
+/* Small labels: wide caps, like markings on a lens barrel */
+.eyebrow, .row-label, .scene-cap {
+  font: 600 12px/1 var(--display); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
 .link { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .22em; text-decoration-thickness: .08em; transition: text-decoration-color 200ms ease; }
 .text-button { text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: .08em; }
 @media (hover: hover) and (pointer: fine) { .link:hover { text-decoration-color: currentColor; } }
@@ -69,58 +71,98 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 12px var(--margin); background: var(--bg);
 }
-.wordmark { font: 700 var(--step-lead)/1 var(--display); letter-spacing: -0.04em; text-decoration: none; }
-.bar nav { display: flex; gap: clamp(18px, 2.4vw, 32px); font-weight: 600; }
+.wordmark { font: 800 clamp(1.125rem, 1rem + .5vw, 1.375rem)/1 var(--display); font-stretch: 125%; letter-spacing: -0.03em; text-decoration: none; }
+.bar nav { display: flex; gap: clamp(16px, 2.4vw, 32px); font-weight: 600; }
 .bar nav a { text-decoration: none; padding: 10px 0; }
 
 /* chips: the one control shape */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chips button {
   min-height: 46px; padding: 0 18px; border-radius: 999px; background: var(--surface);
-  font-weight: 600; transition: background-color 200ms ease, transform 140ms var(--ease-out);
+  font-weight: 600; transition: background-color 200ms ease, color 200ms ease, transform 140ms var(--ease-out);
 }
-.chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 .chips button:active { transform: scale(.95); }
 @media (hover: hover) and (pointer: fine) { .chips button:not([aria-pressed="true"]):hover { background: var(--surface-2); } }
 
-/* EXPOSE */
-.expose { padding: clamp(20px, 4vw, 56px) var(--margin) 0; }
-.title { max-width: 12em; }
-.result {
-  margin-top: clamp(24px, 4vw, 48px);
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, min(34vw, 380px)); gap: clamp(16px, 4vw, 64px); align-items: center;
-}
-.r-nd { font: 700 var(--step-display)/0.82 var(--display); letter-spacing: -0.05em; white-space: nowrap; min-width: 0; }
-.r-grid { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 16px clamp(24px, 4vw, 56px); margin-top: clamp(20px, 3vw, 36px); }
-.r-grid p { display: flex; flex-direction: column; }
-.r-v { font: 700 var(--step-lead)/1.05 var(--display); letter-spacing: -0.02em; }
-.r-k { font-size: var(--step-small); color: var(--muted); font-weight: 600; margin-top: 4px; }
-.r-photo { aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--surface); }
-.r-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: opacity 260ms ease; }
-.r-photo img.swap { opacity: 0; }
-.r-notes { margin-top: clamp(20px, 3vw, 32px); display: grid; gap: 8px; max-width: 46ch; }
-.r-notes li { display: grid; grid-template-columns: 12px 1fr; gap: 12px; align-items: baseline; }
-.r-notes li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-strong); transform: translateY(-1px); }
-.r-notes li.warn { font-weight: 600; }
-.r-notes li.warn::before { background: var(--ink); }
+/* EXPOSE: the lens hero */
+.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.read { padding: 24px 32px 32px var(--margin); display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.r-nd { font: 800 clamp(64px, 12vw, 140px)/.9 var(--display); font-stretch: 125%; letter-spacing: -.045em; white-space: nowrap; min-width: 0; margin-top: 18px; }
+.r-nd.long { font-size: clamp(52px, 9.6vw, 112px); }
+.r-stops { font: 500 14px/1.4 var(--mono); color: var(--muted); margin-top: 10px; }
+.r-grid { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 12px clamp(20px, 4vw, 48px); margin-top: 28px; }
+.r-grid p { display: flex; flex-direction: column; gap: 4px; }
+.r-v { font: 500 22px/1.1 var(--mono); letter-spacing: -.02em; white-space: nowrap; }
+.r-k { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+/* The lens: one photo twice. .scene-raw is what the bare lens records (clipped);
+   .scene-cut is the same photo, correctly exposed, cut to the glass. Same box, same object-fit, no transforms. */
+.scene { position: relative; aspect-ratio: 4 / 3; container-type: inline-size; overflow: hidden; background: var(--surface-2); }
+.scene > * { --d: 64cqw; }                      /* ring diameter */
+/* On a phone-width scene the corner captions would sit on the ring's engraving: shrink the ring to clear them. */
+@container (max-width: 520px) { .scene > * { --d: 54cqw; } }
+.scene-raw, .scene-cut { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 260ms ease; }
+.scene-raw { filter: brightness(var(--over, 2.1)) contrast(.82) saturate(.7); }
+.scene-cut { clip-path: circle(calc(var(--d) * .39) at 50% 50%); }   /* .39 = glass radius 156 / viewBox 400 */
+.scene.swap :is(.scene-raw, .scene-cut) { opacity: 0; }
+.scene-sheen { position: absolute; left: 50%; top: 50%; width: calc(var(--d) * .78); aspect-ratio: 1; border-radius: 50%; translate: -50% -50%;
+  background: radial-gradient(circle at 28% 22%, rgb(140 255 215 / .22), transparent 38%),
+              radial-gradient(circle at 74% 80%, rgb(255 140 225 / .13), transparent 42%);
+  box-shadow: inset 0 0 0 2px rgb(0 0 0 / .55), inset 0 10px 40px rgb(0 0 0 / .32); }
+.scene-ring { position: absolute; left: 50%; top: 50%; width: var(--d); height: var(--d); max-width: none; translate: -50% -50%; filter: drop-shadow(0 10px 18px rgb(0 0 0 / .35)); }
+.scene-ring text { font: 600 15px var(--display); font-stretch: 125%; letter-spacing: 3px; fill: var(--engrave); }
+.ring-off { display: none; }
+.scene[data-nd="none"] :is(.ring-on, .scene-sheen) { display: none; }
+.scene[data-nd="none"] .ring-off { display: block; }
+.scene[data-nd="none"] .scene-ring { filter: none; }
+/* Filter off: the whole photo at normal exposure, so no seam shows where the glass would be. */
+.scene[data-nd="none"] .scene-raw { filter: none; }
+.scene-cap { position: absolute; font-size: 11px; letter-spacing: .12em; background: var(--ring); color: var(--engrave); padding: 6px 8px; border-radius: 3px; }
+.scene-cap.a { left: 12px; top: 12px; }
+.scene-cap.b { right: 12px; bottom: 12px; }
+.scene-cap:empty { display: none; }
+
 /* Fade only: no movement, so the values never jump. */
-.r-nd.flash, .r-v.flash { animation: flash 280ms var(--ease-out); }
+.r-nd.flash, .r-v.flash, .r-stops.flash { animation: flash 280ms var(--ease-out); }
 @keyframes flash { from { opacity: .3; } to { opacity: 1; } }
 
-.controls { margin-top: clamp(28px, 4vw, 48px); display: grid; gap: 16px; }
-.row { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: center; }
-.row-label { font-size: var(--step-small); font-weight: 600; color: var(--muted); }
+.under { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); padding-top: 32px; }
+.controls { padding: 0 32px 0 var(--margin); display: flex; flex-direction: column; gap: 20px; }
+.row { display: flex; flex-direction: column; gap: 10px; }
+.aside { padding: 0 var(--margin); display: flex; flex-direction: column; gap: 28px; min-width: 0; }
 
-/* RIG + APPS share a frame: heading at the side, content on the right */
+.r-notes { display: grid; gap: 10px; max-width: 52ch; }
+.r-notes li { display: grid; grid-template-columns: 12px 1fr; gap: 12px; align-items: baseline; }
+.r-notes li::before { content: ""; width: 12px; height: 12px; border-radius: 50%; border: 3px solid var(--rim); translate: 0 1px; }
+.r-notes li.warn { font-weight: 600; }
+.r-notes li.warn::before { background: var(--warn); }
+
+/* The kit: four filters at their real densities. A readout, not a control. */
+.kit { display: flex; flex-direction: column; gap: 12px; }
+.kit-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 460px; }
+.kit-list li { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; padding: 10px; border-radius: 6px; min-width: 0; }
+.kit-list li[aria-current="true"] { background: var(--surface); }
+.kit-disc { width: 44px; height: 44px; border-radius: 50%; border: 6px solid var(--ring); box-shadow: 0 0 0 1px var(--ring-edge); margin-bottom: 8px;
+  background: linear-gradient(rgb(var(--glass) / var(--t)), rgb(var(--glass) / var(--t))), linear-gradient(160deg, #e9f0f6 20%, #a9bda6 80%); }
+.kit-list b { font: 700 15px/1.2 var(--display); font-stretch: 112%; white-space: nowrap; }
+.kit-list small { font: 500 12px/1.35 var(--mono); color: var(--muted); }
+.kit-list li[aria-current="true"] small { color: var(--ink); }
+.kit-list em { display: none; font: 600 10px/1 var(--display); font-stretch: 125%; font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
+.kit-list li[aria-current="true"] em { display: block; }
+
+/* RIG, APP, PRE-FLIGHT share a frame: heading at the side, content on the right */
 .rig, .apps, .preflight {
   margin-top: var(--gap-section); padding: 0 var(--margin);
   display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 16px;
 }
 .side { grid-column: 1 / span 4; align-self: start; position: sticky; top: 80px; }
 .side-note { margin-top: 16px; max-width: 30ch; }
-.side .chips { margin-top: 20px; }
-.rig-status { margin-top: 16px; color: var(--muted); }
-.rig-status span { color: var(--ink); font-weight: 600; }
+.rig-status { margin-top: 16px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.rig-status span[id$="-count"] { color: var(--ink); font: 500 1em/1.2 var(--mono); }
+.prog { display: inline-flex; gap: 6px; margin-right: 6px; }
+.prog i { width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--rim); }
+.prog i.on { background: var(--rim); }
 
 .steps, .deck { grid-column: 5 / span 8; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-content: start; }
 .step label {
@@ -134,47 +176,53 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 .t1 { --tile: var(--bg); --fg: var(--ink); --fg2: var(--muted); }
 .t2 { --tile: var(--muted); --fg: var(--ink); --fg2: var(--bg); }
 .t3 { --tile: var(--bg); --fg: var(--ink); --fg2: var(--surface-2); }
-.t4 { --tile: var(--accent); --fg: var(--bg); --fg2: var(--surface-2); }
+.t4 { --tile: var(--ink); --fg: var(--bg); --fg2: var(--muted); }
 .t5 { --tile: var(--surface-2); --fg: var(--ink); --fg2: var(--bg); }
-.step-text strong, .deck strong { display: block; font: 700 var(--step-lead)/1.15 var(--display); letter-spacing: -0.02em; margin-bottom: 4px; }
+.step-text strong, .deck strong { display: block; font: 700 var(--step-title)/1.2 var(--display); font-stretch: 112%; letter-spacing: -.01em; margin-bottom: 4px; }
 .step:has(input:checked) .step-text { color: var(--muted); }
+/* The checkbox is a filter: an empty ring until done, then smoked glass. */
 .step input {
   appearance: none; -webkit-appearance: none; margin: 0;
-  width: 32px; height: 32px; border-radius: 50%; background: var(--well);
+  width: 32px; height: 32px; border-radius: 50%; border: 5px solid var(--rim); background: rgb(var(--glass) / .06);
   display: grid; place-items: center; cursor: pointer;
   transition: background-color 200ms ease, transform 140ms var(--ease-out);
 }
-.step input::after { content: ""; width: 12px; height: 7px; border: solid var(--accent-ink); border-width: 0 0 3px 3px; transform: rotate(-45deg) translate(1px, -1px) scale(.6); opacity: 0; transition: opacity 160ms ease, transform 220ms var(--ease-out); }
-.step input:checked { background: var(--accent); }
+.step input::after { content: ""; width: 11px; height: 6px; border: solid var(--bg); border-width: 0 0 3px 3px; transform: rotate(-45deg) translate(1px, -1px) scale(.6); opacity: 0; transition: opacity 160ms ease, transform 220ms var(--ease-out); }
+.step input:checked { background: var(--rim); }
 .step input:checked::after { transform: rotate(-45deg) translate(1px, -1px); opacity: 1; }
 .step label:active input { transform: scale(.9); }
-
-.deck li { padding: 18px 20px; background: var(--surface); }
-/* A step that can break the recording stands out in the accent colour. */
-.deck li.caution { background: var(--accent); color: var(--accent-ink); }
-.tag { display: inline-block; font: 600 var(--step-small)/1 var(--text); letter-spacing: 0; vertical-align: .2em; padding: .35em .6em; border-radius: 999px; background: var(--surface-2); color: var(--ink); }
 .checks .step label { grid-template-columns: 1fr 32px; }
 .step-text em { font-style: normal; font-weight: 600; }
+
+/* The MotionCam steps are a sequence: number each so you don't lose your place. */
+.deck { counter-reset: s; }
+.deck li { counter-increment: s; padding: 16px 18px 18px; background: var(--surface); }
+.deck li::before { content: counter(s) " / 8"; display: block; font: 500 12px/1 var(--mono); color: var(--muted); margin-bottom: 10px; }
 .deck li > :not(strong) { display: inline; }
-/* League Spartan's line box has ~0.2em of extra space below the baseline, so the value sat high in its pill.
-   Trim the box to cap height and baseline, then pad evenly. */
-[data-v] { display: inline-block; line-height: 1; background: var(--accent); color: var(--accent-ink); padding: .2em .32em; border-radius: 999px; white-space: nowrap;
-  text-box: trim-both cap alphabetic; }
-@supports not (text-box: trim-both cap alphabetic) { [data-v] { padding: .29em .32em .1em; } }
+/* A step that can break the recording stands out. */
+.deck li.caution { background: var(--warn); color: var(--warn-ink); }
+.deck li.caution::before { color: inherit; }
+.tag { display: inline-block; font: 500 12px/1 var(--mono); letter-spacing: 0; vertical-align: .15em; padding: .35em .6em; border-radius: 999px; background: var(--surface-2); color: var(--ink); }
+[data-v] { display: inline-block; font: 500 .82em/1 var(--mono); background: var(--ring); color: var(--engrave); padding: .3em .55em; border-radius: 999px; white-space: nowrap; vertical-align: .08em; }
 
 .foot { margin-top: var(--gap-section); padding: 32px var(--margin) 40px; background: var(--surface); color: var(--muted); font-size: var(--step-small); }
 .foot p { max-width: 60ch; }
 .foot .version { margin-top: 12px; }
 
-/* motion */
+/* motion: the ring threads on when the filter changes */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); transition-delay: calc(var(--d, 0) * 70ms); }
-  .js .reveal.is-in { opacity: 1; transform: none; }
-  .r-photo img { animation: drift 24s ease-in-out infinite alternate; }
-  @keyframes drift { from { transform: scale(1.04); } to { transform: scale(1.14) translate(-2%, 1%); } }
+  .scene-ring.turn { animation: thread 320ms var(--ease-out); }
+  @keyframes thread { from { rotate: -35deg; } }
 }
 
-/* phone */
+/* Reduced motion: nothing moves or scales; values just change. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .chips button:active, .step label:active input { transform: none; }
+}
+
+/* tablet */
 @media (max-width: 1100px) {
   .side, .steps, .deck { grid-column: 1 / -1; }
   .side { position: static; margin-bottom: 24px; }
@@ -183,22 +231,21 @@ h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.035em
 @media (max-width: 700px) {
   .steps, .deck { grid-template-columns: 1fr; }
 }
+/* phone: lens first and full-bleed, then readouts, chips, notes, kit */
 @media (max-width: 760px) {
-  .title { font-size: 2rem; }
-  .result { grid-template-columns: minmax(0, 1fr) 32vw; gap: 16px; }
-  .r-nd.long { font-size: 15vw; }
-  .r-nd { grid-row: 1; grid-column: 1; align-self: center; }
-  .r-photo { grid-row: 1; grid-column: 2; }
-  .r-nd { font-size: 22vw; }
-  .r-grid { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
-  .r-values { display: contents; }
-  .row { grid-template-columns: 1fr; gap: 8px; }
+  .hero, .under { grid-template-columns: minmax(0, 1fr); }
+  .scene { order: -1; }
+  .read { padding: 20px var(--margin) 8px; }
+  .r-nd { font-size: 23vw; margin-top: 12px; }
+  .r-nd.long { font-size: 18vw; }
+  .r-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+  .r-v { font-size: 19px; }
+  .under { padding-top: 24px; gap: 28px; }
+  .controls { padding: 0 var(--margin); }
   .chips button { padding: 0 16px; }
-  .side, .steps, .deck { grid-column: 1 / -1; }
-  .steps, .deck { grid-template-columns: 1fr; }
-  .side { position: static; margin-bottom: 24px; }
+  .kit-list li { padding: 8px 6px; }
   .step label { grid-template-columns: 60px 1fr 32px; gap: 14px; padding: 12px 14px 12px 12px; }
+  .checks .step label { grid-template-columns: 1fr 32px; }
   .thumb { width: 60px; height: 60px; padding: 6px; }
   .step-text { font-size: 0.9375rem; }
 }
-

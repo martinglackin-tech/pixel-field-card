@@ -1,8 +1,8 @@
 // Offline cache so the card works in the field without signal.
 // Always checks the server first (bypassing the browser's HTTP cache), so updates show on the next load.
-const CACHE = 'field-card-v20';
+const CACHE = 'field-card-v21';
 const FILES = [
-  './', 'index.html', 'styles.css?v=20', 'app.js?v=20',
+  './', 'index.html', 'styles.css?v=21', 'app.js?v=21',
   'assets/golden.jpg', 'assets/overcast.jpg', 'assets/hazy.jpg', 'assets/midday.jpg',
   'assets/dusk.jpg',
   'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png'
@@ -26,6 +26,6 @@ self.addEventListener('fetch', e => {
     fresh.then(res => {
       if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
       return res;
-    }).catch(() => caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match('index.html')))
+    }).catch(() => caches.match(req, { ignoreSearch: true, ignoreVary: true }).then(hit => hit || caches.match('index.html')))
   );
 });
